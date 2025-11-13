@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Showcase - Leadbunker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .showcase-section {
+            padding: 3rem 0;
+            border-bottom: 2px dashed #E5E7EB;
+        }
+        .showcase-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #6366F1, #A78BFA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .demo-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid #E5E7EB;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Leadbunker</span>
+                </a>
+                <div class="nav-actions">
+                    <a href="index.html" class="btn btn-outline">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div style="padding: 4rem 0; background: linear-gradient(135deg, #EDE9FE, #DDD6FE);">
+        <div class="container">
+            <h1 style="text-align: center; margin-bottom: 1rem;">🎨 Animation Showcase</h1>
+            <p style="text-align: center; color: #6B7280; margin-bottom: 3rem;">See all the amazing animations and effects in action!</p>
+
+            <!-- Buttons Section -->
+            <div class="showcase-section">
+                <h2 class="showcase-title">Button Styles & Animations</h2>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary"><i class="fas fa-rocket"></i> Primary Button</button>
+                    <button class="btn btn-outline"><i class="fas fa-star"></i> Outline Button</button>
+                    <button class="btn btn-primary btn-large"><i class="fas fa-heart"></i> Large Button</button>
+                    <button class="btn btn-primary glow-on-hover"><i class="fas fa-fire"></i> Glow Button</button>
+                    <button class="btn btn-primary ripple"><i class="fas fa-hand-pointer"></i> Ripple Button</button>
+                </div>
+            </div>
+
+            <!-- Icons Section -->
+            <div class="showcase-section">
+                <h2 class="showcase-title">Icon Animations</h2>
+                <div class="demo-grid">
+                    <div class="demo-box">
+                        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                        <h4>Bounce Animation</h4>
+                    </div>
+                    <div class="demo-box">
+                        <div class="feature-icon spin-hover"><i class="fas fa-sync"></i></div>
+                        <h4>Spin on Hover</h4>
+                    </div>
+                    <div class="demo-box">
+                        <div style="font-size: 3rem; animation: heartbeat 1.5s ease-in-out infinite;"><i class="fas fa-heart"></i></div>
+                        <h4>Heartbeat</h4>
+                    </div>
+                    <div class="demo-box">
+                        <div style="font-size: 3rem;" class="wave"><i class="fas fa-hand-wave"></i></div>
+                        <h4>Wave</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Effects -->
+            <div class="showcase-section">
+                <h2 class="showcase-title">Text Effects</h2>
+                <div style="text-align: center;">
+                    <h1 class="gradient-text" style="font-size: 3rem; margin-bottom: 2rem;">Gradient Animated Text</h1>
+                    <h2 class="neon-glow" style="margin-bottom: 2rem;">Neon Glow Effect</h2>
+                    <div style="display: inline-block; overflow: hidden; border-right: 2px solid #6366F1; white-space: nowrap; animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;">
+                        <span>Typewriter Animation Effect</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Effects -->
+            <div class="showcase-section">
+                <h2 class="showcase-title">Card Hover Effects</h2>
+                <div class="demo-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-magic"></i></div>
+                        <h3>Shine Effect</h3>
+                        <p>Hover to see shine sweep</p>
+                    </div>
+                    <div class="feature-card tilt-card">
+                        <div class="feature-icon"><i class="fas fa-cube"></i></div>
+                        <h3>3D Tilt</h3>
+                        <p>Hover for perspective</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Lift & Shadow</h3>
+                        <p>Hover to lift up</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Decorative Shapes -->
+            <div class="showcase-section">
+                <h2 class="showcase-title">Floating Shapes</h2>
+                <div style="position: relative; height: 400px; background: white; border-radius: 20px; overflow: hidden;">
+                    <div class="hero-decorator decorator-1"></div>
+                    <div class="hero-decorator decorator-2"></div>
+                    <div class="hero-decorator decorator-3"></div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 10;">
+                        <h3>Watch the Shapes Move!</h3>
+                        <p>Organic floating animation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status Badges -->
+            <div class="showcase-section">
+                <h2 class="showcase-title">Badges & Pills</h2>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <div class="badge"><i class="fas fa-check"></i> Success Badge</div>
+                    <div class="badge"><i class="fas fa-star"></i> Featured</div>
+                    <div class="badge badge-icon pulse-scale"><i class="fas fa-circle"></i> Live Status</div>
+                    <span style="background: #D1FAE5; color: #065F46; padding: 0.5rem 1rem; border-radius: 24px; font-weight: 600;">✓ Completed</span>
+                    <span style="background: #FEF3C7; color: #92400E; padding: 0.5rem 1rem; border-radius: 24px; font-weight: 600;">⏳ Processing</span>
+                    <span style="background: #FEE2E2; color: #991B1B; padding: 0.5rem 1rem; border-radius: 24px; font-weight: 600;">✗ Failed</span>
+                </div>
+            </div>
+
+            <!-- Loading States -->
+            <div class="showcase-section">
+                <h2 class="showcase-title">Loading Animations</h2>
+                <div style="display: flex; gap: 3rem; justify-content: center; align-items: center;">
+                    <div class="spinner"></div>
+                    <div class="loading-dots" style="display: flex; gap: 0.5rem;">
+                        <span style="width: 10px; height: 10px; background: #6366F1; border-radius: 50%; display: block;"></span>
+                        <span style="width: 10px; height: 10px; background: #6366F1; border-radius: 50%; display: block;"></span>
+                        <span style="width: 10px; height: 10px; background: #6366F1; border-radius: 50%; display: block;"></span>
+                    </div>
+                    <div style="width: 200px; height: 20px;" class="skeleton"></div>
+                </div>
+            </div>
+
+            <!-- Morphing Shape -->
+            <div class="showcase-section">
+                <h2 class="showcase-title">Morphing Blob</h2>
+                <div style="display: flex; justify-content: center;">
+                    <div class="blob morph-shape" style="width: 200px; height: 200px; background: linear-gradient(135deg, #6366F1, #A78BFA);"></div>
+                </div>
+            </div>
+
+            <!-- Scale & Pulse -->
+            <div class="showcase-section">
+                <h2 class="showcase-title">Scale & Pulse Effects</h2>
+                <div style="display: flex; gap: 3rem; justify-content: center;">
+                    <div class="pulse-scale" style="width: 100px; height: 100px; background: linear-gradient(135deg, #6366F1, #A78BFA); border-radius: 50%;"></div>
+                    <div class="bounce" style="width: 100px; height: 100px; background: linear-gradient(135deg, #10B981, #059669); border-radius: 50%;"></div>
+                    <div class="wave" style="width: 100px; height: 100px; background: linear-gradient(135deg, #06B6D4, #0891B2); border-radius: 50%;"></div>
+                </div>
+            </div>
+
+            <!-- Back to Home -->
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="index.html" class="btn btn-primary btn-large glow-on-hover">
+                    <i class="fas fa-home"></i> Back to Home Page
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
+

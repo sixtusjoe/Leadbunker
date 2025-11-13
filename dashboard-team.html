@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Team Management - Leadbunker Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%); }
+        .dashboard-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+        .sidebar { background: rgba(31, 41, 55, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: white; padding: 2rem 0; box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); }
+        .sidebar-logo { padding: 0 1.5rem; margin-bottom: 2rem; }
+        .sidebar-menu { list-style: none; }
+        .sidebar-menu li { margin-bottom: 0.5rem; }
+                .sidebar-menu a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; margin: 0 0.75rem; color: rgba(255, 255, 255, 0.75); text-decoration: none; transition: all 0.3s ease; border-radius: 12px; font-size: 0.85rem; font-weight: 600; position: relative; }
+        .sidebar-menu a:hover { background: rgba(99, 102, 241, 0.15); color: white; transform: translateX(5px); }
+        .sidebar-menu a.active { background: rgba(99, 102, 241, 0.25); color: white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
+        .sidebar-menu a.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 60%; background: linear-gradient(180deg, #6366F1, #A78BFA); border-radius: 0 4px 4px 0; }
+        .main-content { padding: 0.75rem; max-width: 1200px; margin: 0 auto; }
+        .content-card { background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-bottom: 0.75rem; }
+        .member-card { border: 2px solid #E5E7EB; border-radius: 12px; padding: 0.75rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.85rem; }
+        .avatar { width: 45px; height: 45px; background: linear-gradient(135deg, #4F46E5, #8B5CF6); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.85rem; }
+        .role-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
+        .role-owner { background: #FEF3C7; color: #92400E; }
+        .role-admin { background: #E0E7FF; color: #3730A3; }
+        .role-member { background: #D1FAE5; color: #065F46; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Leadbunker</span>
+                </a>
+                <button class="sidebar-close" onclick="toggleSidebar()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
+                <li><a href="dashboard-tasks.html"><i class="fas fa-folder-open"></i> My Tasks</a></li>
+                <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
+                <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
+                <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                <li><a href="dashboard-analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                <li><a href="dashboard-team.html" class="active"><i class="fas fa-users"></i> Team</a></li>
+                <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <!-- Dashboard Header -->
+            <div style="margin-bottom: 1.25rem;">
+                <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.35rem;"><i class="fas fa-users"></i> Team Management</h1>
+                <p style="color: #6B7280; font-size: 0.85rem; margin: 0;">Manage team members and their access</p>
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <h1 style="font-size: 1.5rem; font-weight: 700;"><i class="fas fa-users" style="font-size: 1.25rem;"></i> Team Management</h1>
+                <p style="color: #6B7280; font-size: 0.85rem;">Manage team members and their access</p>
+            </div>
+
+            <!-- Invite New Member -->
+            <div class="content-card">
+                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Invite Team Member</h2>
+                <form id="inviteForm" style="display: flex; gap: 1rem; align-items: end;">
+                    <div style="flex: 1;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Email Address</label>
+                        <input type="email" placeholder="colleague@company.com" style="width: 100%; padding: 0.6rem; border: 2px solid #E5E7EB; border-radius: 8px;" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Role</label>
+                        <select style="width: 100%; padding: 0.6rem; border: 2px solid #E5E7EB; border-radius: 8px;">
+                            <option>Member</option>
+                            <option>Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="padding: 0.6rem 1rem;">Send Invite</button>
+                </form>
+            </div>
+
+            <!-- Team Members -->
+            <div class="content-card">
+                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Team Members (4)</h2>
+                
+                <div class="member-card">
+                    <div class="avatar">JD</div>
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1rem; font-weight: 600;" style="margin-bottom: 0.25rem;">John Doe</h3>
+                        <p style="color: #6B7280; margin: 0;">john.doe@company.com</p>
+                    </div>
+                    <span class="role-badge role-owner">Owner</span>
+                    <span style="color: #6B7280; font-size: 0.85rem;">Joined Jan 15, 2025</span>
+                </div>
+
+                <div class="member-card">
+                    <div class="avatar" style="background: linear-gradient(135deg, #10B981, #059669);">SM</div>
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1rem; font-weight: 600;" style="margin-bottom: 0.25rem;">Sarah Miller</h3>
+                        <p style="color: #6B7280; margin: 0;">sarah.miller@company.com</p>
+                    </div>
+                    <span class="role-badge role-admin">Admin</span>
+                    <span style="color: #6B7280; font-size: 0.85rem;">Joined Jan 18, 2025</span>
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem;">Edit</button>
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem; color: #EF4444;">Remove</button>
+                </div>
+
+                <div class="member-card">
+                    <div class="avatar" style="background: linear-gradient(135deg, #06B6D4, #0891B2);">MJ</div>
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1rem; font-weight: 600;" style="margin-bottom: 0.25rem;">Mike Johnson</h3>
+                        <p style="color: #6B7280; margin: 0;">mike.j@company.com</p>
+                    </div>
+                    <span class="role-badge role-member">Member</span>
+                    <span style="color: #6B7280; font-size: 0.85rem;">Joined Jan 20, 2025</span>
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem;">Edit</button>
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem; color: #EF4444;">Remove</button>
+                </div>
+
+                <div class="member-card" style="border-color: #FEF3C7; background: #FFFBEB;">
+                    <div class="avatar" style="background: #F59E0B;">EW</div>
+                    <div style="flex: 1;">
+                        <h3 style="font-size: 1rem; font-weight: 600;" style="margin-bottom: 0.25rem;">Emily Williams</h3>
+                        <p style="color: #6B7280; margin: 0;">emily.w@company.com</p>
+                    </div>
+                    <span class="role-badge" style="background: #FEF3C7; color: #92400E;">Invited</span>
+                    <span style="color: #6B7280; font-size: 0.85rem;">Pending</span>
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem;">Resend</button>
+                    <button class="btn btn-outline" style="padding: 0.5rem 1rem; color: #EF4444;">Cancel</button>
+                </div>
+            </div>
+
+            <!-- Roles & Permissions -->
+            <div class="content-card">
+                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Roles & Permissions</h2>
+                <div style="display: grid; gap: 1rem;">
+                    <div style="border: 2px solid #E5E7EB; padding: 0.75rem; border-radius: 12px;">
+                        <h3 style="font-size: 1rem; font-weight: 600;">Owner</h3>
+                        <p style="color: #6B7280;">Full access to all features including billing, team management, and account deletion.</p>
+                    </div>
+                    <div style="border: 2px solid #E5E7EB; padding: 0.75rem; border-radius: 12px;">
+                        <h3 style="font-size: 1rem; font-weight: 600;">Admin</h3>
+                        <p style="color: #6B7280;">Can manage extractions, view reports, and invite team members. Cannot access billing or delete account.</p>
+                    </div>
+                    <div style="border: 2px solid #E5E7EB; padding: 0.75rem; border-radius: 12px;">
+                        <h3 style="font-size: 1rem; font-weight: 600;">Member</h3>
+                        <p style="color: #6B7280;">Can create and manage their own extractions. View-only access to team data.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('inviteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Invitation sent successfully!');
+            this.reset();
+        });
+    </script>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            
+            if (sidebar && overlay) {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
+            }
+        }
+        
+        // Close sidebar when clicking a menu item on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuLinks = document.querySelectorAll('.sidebar-menu a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        toggleSidebar();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

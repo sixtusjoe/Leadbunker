@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Support - Leadbunker Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%); }
+        .dashboard-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+        .sidebar { background: rgba(31, 41, 55, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: white; padding: 2rem 0; box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); }
+        .sidebar-logo { padding: 0 1.5rem; margin-bottom: 2rem; }
+        .sidebar-menu { list-style: none; }
+        .sidebar-menu li { margin-bottom: 0.5rem; }
+                .sidebar-menu a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; margin: 0 0.75rem; color: rgba(255, 255, 255, 0.75); text-decoration: none; transition: all 0.3s ease; border-radius: 12px; font-size: 0.85rem; font-weight: 600; position: relative; }
+        .sidebar-menu a:hover { background: rgba(99, 102, 241, 0.15); color: white; transform: translateX(5px); }
+        .sidebar-menu a.active { background: rgba(99, 102, 241, 0.25); color: white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
+        .sidebar-menu a.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 60%; background: linear-gradient(180deg, #6366F1, #A78BFA); border-radius: 0 4px 4px 0; }
+        .main-content { padding: 0.75rem; max-width: 1200px; margin: 0 auto; }
+        .content-card { background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-bottom: 0.75rem; }
+        .support-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.85rem; }
+        .support-card { border: 2px solid #E5E7EB; padding: 0.75rem; border-radius: 12px; text-align: center; transition: all 0.3s; cursor: pointer; }
+        .support-card:hover { border-color: #4F46E5; box-shadow: 0 5px 15px rgba(79, 70, 229, 0.1); }
+        .support-icon { font-size: 0.85rem; margin-bottom: 0.75rem; }
+        .ticket-card { border: 2px solid #E5E7EB; border-radius: 12px; padding: 0.75rem; margin-bottom: 0.75rem; }
+        .status-open { background: #FEF3C7; color: #92400E; padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
+        .status-closed { background: #D1FAE5; color: #065F46; padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
+        .faq-item { border-bottom: 1px solid #E5E7EB; padding: 1.5rem 0; }
+        .faq-item:last-child { border-bottom: none; }
+        .faq-question { font-weight: 600; color: #1F2937; margin-bottom: 0.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .faq-answer { color: #6B7280; display: none; padding-top: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Leadbunker</span>
+                </a>
+                <button class="sidebar-close" onclick="toggleSidebar()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
+                <li><a href="dashboard-tasks.html"><i class="fas fa-folder-open"></i> My Tasks</a></li>
+                <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
+                <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
+                <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                <li><a href="dashboard-analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
+                <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="dashboard-support.html" class="active"><i class="fas fa-life-ring"></i> Support</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <!-- Dashboard Header -->
+            <div style="margin-bottom: 1.25rem;">
+                <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.35rem;"><i class="fas fa-life-ring"></i> Help & Support</h1>
+                <p style="color: #6B7280; font-size: 0.85rem; margin: 0;">Get help with Leadbunker</p>
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <h1 style="font-size: 1rem; font-weight: 700;"><i class="fas fa-comments"></i> Help & Support</h1>
+                <p style="color: #6B7280;">Get help with Leadbunker</p>
+            </div>
+
+            <!-- Support Options -->
+            <div class="support-grid" style="margin-bottom: 2rem;">
+                <div class="support-card">
+                    <div class="support-icon"><i class="fas fa-book"></i></div>
+                    <h3 style="font-size: 1rem; font-weight: 600;">Documentation</h3>
+                    <p style="color: #6B7280;">Comprehensive guides and tutorials</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Browse Docs</a>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon"><i class="fas fa-comments"></i></div>
+                    <h3 style="font-size: 1rem; font-weight: 600;">Live Chat</h3>
+                    <p style="color: #6B7280;">Chat with our support team</p>
+                    <button class="btn btn-primary" style="margin-top: 1rem;">Start Chat</button>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon"><i class="fas fa-envelope"></i></div>
+                    <h3 style="font-size: 1rem; font-weight: 600;">Email Support</h3>
+                    <p style="color: #6B7280;">Send us a detailed message</p>
+                    <a href="contact.html" class="btn btn-primary" style="margin-top: 1rem;">Send Email</a>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">🎥</div>
+                    <h3 style="font-size: 1rem; font-weight: 600;">Video Tutorials</h3>
+                    <p style="color: #6B7280;">Watch step-by-step guides</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Watch Videos</a>
+                </div>
+            </div>
+
+            <!-- Create Support Ticket -->
+            <div class="content-card">
+                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Create Support Ticket</h2>
+                <form id="ticketForm">
+                    <div style="margin-bottom: 0.75rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Subject *</label>
+                        <input type="text" placeholder="Brief description of your issue" style="width: 100%; padding: 0.6rem; border: 2px solid #E5E7EB; border-radius: 8px;" required>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Category *</label>
+                        <select style="width: 100%; padding: 0.6rem; border: 2px solid #E5E7EB; border-radius: 8px;">
+                            <option>Technical Issue</option>
+                            <option>Billing Question</option>
+                            <option>Feature Request</option>
+                            <option>API Support</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Priority</label>
+                        <select style="width: 100%; padding: 0.6rem; border: 2px solid #E5E7EB; border-radius: 8px;">
+                            <option>Low</option>
+                            <option selected>Medium</option>
+                            <option>High</option>
+                            <option>Urgent</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Description *</label>
+                        <textarea rows="6" placeholder="Please describe your issue in detail..." style="width: 100%; padding: 0.6rem; border: 2px solid #E5E7EB; border-radius: 8px; font-family: inherit;" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Ticket</button>
+                </form>
+            </div>
+
+            <!-- Your Tickets -->
+            <div class="content-card">
+                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Your Support Tickets</h2>
+                
+                <div class="ticket-card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
+                        <div>
+                            <h3 style="font-size: 1rem; font-weight: 600;">#TICKET-1234: API Rate Limiting Question</h3>
+                            <p style="color: #6B7280; margin: 0.5rem 0;">Opened on Jan 10, 2025</p>
+                        </div>
+                        <span class="status-open">Open</span>
+                    </div>
+                    <p style="color: #6B7280;">Need clarification on API rate limits for Pro plan...</p>
+                    <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">View Thread</button>
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">Add Reply</button>
+                    </div>
+                </div>
+
+                <div class="ticket-card">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
+                        <div>
+                            <h3 style="font-size: 1rem; font-weight: 600;">#TICKET-1230: Extraction Failed Error</h3>
+                            <p style="color: #6B7280; margin: 0.5rem 0;">Opened on Jan 5, 2025</p>
+                        </div>
+                        <span class="status-closed">Closed</span>
+                    </div>
+                    <p style="color: #6B7280;">Resolved - Issue was caused by website blocking...</p>
+                    <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">View Thread</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="content-card">
+                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How do I purchase more credits?</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Go to Credits & Billing page, select a credit pack, and complete the crypto payment. Credits are added instantly.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Why did my extraction fail?</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Extractions can fail if the website is down, blocks our requests, or has no contact information. No credits are deducted for failed tasks.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>How accurate is the email validation?</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Our AI-powered validation achieves 98%+ accuracy by checking syntax, domain validity, MX records, and detecting fake email patterns.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Can I get a refund?</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Due to the instant nature of crypto payments and credit delivery, refunds are handled case-by-case. Contact support for assistance.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Is Leadbunker GDPR compliant?</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Yes, we are fully GDPR compliant. We only extract publicly available information and provide tools for users to comply with data protection laws.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="content-card" style="background: linear-gradient(135deg, #4F46E5, #8B5CF6); color: white;">
+                <h2 style="font-size: 1.15rem; font-weight: 700;" style="color: white; margin-bottom: 0.75rem;">Need Immediate Assistance?</h2>
+                <p style="opacity: 0.9; margin-bottom: 0.75rem;">Our support team is here to help you 24/7</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <strong>Email</strong><br/>
+                        support@leadbunker.com
+                    </div>
+                    <div>
+                        <strong>Response Time</strong><br/>
+                        Usually within 2 hours
+                    </div>
+                    <div>
+                        <strong>Live Chat</strong><br/>
+                        Available 24/7
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const arrow = element.querySelector('span:last-child');
+            
+            if (answer.style.display === 'block') {
+                answer.style.display = 'none';
+                arrow.textContent = '▼';
+            } else {
+                answer.style.display = 'block';
+                arrow.textContent = '▲';
+            }
+        }
+
+        document.getElementById('ticketForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Support ticket created successfully! We\'ll respond within 2 hours.');
+            this.reset();
+        });
+    </script>
+
+    <!-- Mobile Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
+
+    <script>
+        // Mobile menu toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            
+            if (sidebar && overlay) {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
+            }
+        }
+        
+        // Close sidebar when clicking a menu item on mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuLinks = document.querySelectorAll('.sidebar-menu a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        toggleSidebar();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
