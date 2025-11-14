@@ -6,6 +6,7 @@
     <title>Sign Up - Leadbunker | Get 100 Free Credits</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .auth-container {
             min-height: 100vh;
@@ -13,30 +14,50 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%);
-            padding: 2rem;
+            padding: 4rem 2rem;
+            padding-bottom: 4rem;
         }
 
         .auth-card {
             background: white;
             border-radius: 20px;
-            padding: 3rem;
+            padding: 0 3rem 3rem 3rem;
             max-width: 450px;
             width: 100%;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2.5rem;
         }
 
         .auth-header {
             text-align: center;
             margin-bottom: 2rem;
+            padding-top: 0;
+            margin-top: 0;
         }
 
-        .auth-header .logo {
+        .back-link {
             display: inline-flex;
-            margin-bottom: 1rem;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6B7280;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: #4F46E5;
+        }
+        
+        .back-link i {
+            font-size: 0.85rem;
         }
 
         .auth-header h2 {
             margin-bottom: 0.5rem;
+            margin-top: 0;
+            padding-top: 0;
         }
 
         .auth-header p {
@@ -96,18 +117,25 @@
 
         .checkbox-group {
             display: flex;
-            align-items: start;
+            align-items: flex-start;
             gap: 0.5rem;
             margin-bottom: 1.5rem;
+            flex-direction: row !important;
         }
 
         .checkbox-group input[type="checkbox"] {
-            margin-top: 0.25rem;
+            margin: 0;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
         }
 
         .checkbox-group label {
             font-size: 0.9rem;
             color: #6B7280;
+            margin: 0;
+            line-height: 1.5;
         }
 
         .checkbox-group a {
@@ -173,26 +201,138 @@
         .login-link {
             text-align: center;
             margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #6B7280;
         }
 
         .login-link a {
             color: #4F46E5;
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.85rem;
         }
 
         .login-link a:hover {
             text-decoration: underline;
         }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .auth-container {
+                padding: 2rem 1rem;
+                padding-bottom: 2.5rem;
+            }
+            
+            .auth-card {
+                padding: 1.5rem;
+                border-radius: 16px;
+            }
+            
+            .auth-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .auth-header p {
+                font-size: 0.9rem;
+            }
+            
+            .benefits {
+                padding: 0.75rem;
+            }
+            
+            .benefits li {
+                font-size: 0.85rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1.25rem;
+            }
+            
+            .form-group input {
+                padding: 0.75rem;
+                font-size: 0.95rem;
+            }
+            
+            .btn-primary {
+                padding: 0.875rem 1.5rem;
+                font-size: 0.95rem;
+            }
+            
+            .checkbox-group {
+                font-size: 0.85rem;
+            }
+            
+            .social-btn {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 1.5rem 0.75rem;
+                padding-bottom: 2rem;
+            }
+            
+            .auth-card {
+                padding: 1.25rem;
+            }
+            
+            .auth-header h2 {
+                font-size: 1.25rem;
+            }
+            
+            .logo span {
+                font-size: 1.1rem;
+            }
+            
+            .benefits li {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="auth-container">
-        <div class="auth-card">
-            <div class="auth-header">
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <a href="index.html" class="logo">
                     <div class="logo-icon">LB</div>
                     <span>Leadbunker</span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="mobile-only-nav"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="features.html"><i class="fas fa-star"></i> Features</a></li>
+                    <li><a href="pricing.html"><i class="fas fa-tag"></i> Pricing</a></li>
+                    <li><a href="how-it-works.html"><i class="fas fa-info-circle"></i> How It Works</a></li>
+                    <li><a href="compliance.html"><i class="fas fa-shield-alt"></i> Compliance</a></li>
+                    <li><a href="about.html"><i class="fas fa-users"></i> About</a></li>
+                    <li class="mobile-only-nav"><a href="login.html" class="mobile-nav-btn btn-outline" style="text-decoration: none !important;"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+                    <li class="mobile-only-nav"><a href="signup.html" class="mobile-nav-btn btn-primary" style="text-decoration: none !important;"><i class="fas fa-rocket"></i> Start Free Trial</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="login.html" class="btn btn-outline">Sign In</a>
+                    <a href="signup.html" class="btn btn-primary">Start Free Trial</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Home
                 </a>
                 <h2>Create Your Account</h2>
                 <p>Start with 100 free credits • No credit card required</p>
@@ -256,10 +396,59 @@
             </div>
 
             <div class="login-link">
-                <p>Already have an account? <a href="login.html">Sign in</a></p>
+                Already have an account? <a href="login.html">Sign in</a>
             </div>
         </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="color: white; margin-bottom: 1rem;">
+                        <div class="logo-icon">LB</div>
+                        <span>Leadbunker</span>
+                    </div>
+                    <p>AI-powered lead generation platform for modern businesses. Extract, verify, and organize contacts with precision.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="how-it-works.html">How It Works</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="compliance.html">Compliance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="gdpr.html">GDPR</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Leadbunker. All rights reserved. Made with ❤️ for lead generation excellence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script>
         document.getElementById('signupForm').addEventListener('submit', function(e) {
@@ -279,6 +468,8 @@
             window.location.href = 'dashboard.html';
         });
     </script>
+    
+    <script src="js/main.js"></script>
 </body>
 </html>
 
