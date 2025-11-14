@@ -2,297 +2,184 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - Leadbunker Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body { background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%); }
-        .dashboard-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
-        .sidebar { background: rgba(31, 41, 55, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: white; padding: 2rem 0; box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); }
-        .sidebar-logo { padding: 0 1.5rem; margin-bottom: 2rem; }
-        .sidebar-menu { list-style: none; }
-        .sidebar-menu li { margin-bottom: 0.5rem; }
-                .sidebar-menu a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; margin: 0 0.75rem; color: rgba(255, 255, 255, 0.75); text-decoration: none; transition: all 0.3s ease; border-radius: 12px; font-size: 0.85rem; font-weight: 600; position: relative; }
-        .sidebar-menu a:hover { background: rgba(99, 102, 241, 0.15); color: white; transform: translateX(5px); }
-        .sidebar-menu a.active { background: rgba(99, 102, 241, 0.25); color: white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
-        .sidebar-menu a.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 60%; background: linear-gradient(180deg, #6366F1, #A78BFA); border-radius: 0 4px 4px 0; }
-        .main-content { padding: 0.75rem; max-width: 1200px; margin: 0 auto; }
-        .content-card { background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-bottom: 0.75rem; }
-        .setting-item { padding: 1.5rem 0; border-bottom: 1px solid #E5E7EB; display: flex; justify-content: space-between; align-items: center; }
-        .setting-item:last-child { border-bottom: none; }
-        .toggle-switch { position: relative; width: 60px; height: 30px; }
-        .toggle-switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #E5E7EB; border-radius: 30px; transition: 0.4s; }
-        .slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background-color: white; border-radius: 50%; transition: 0.4s; }
-        input:checked + .slider { background-color: #4F46E5; }
-        input:checked + .slider:before { transform: translateX(30px); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Settings</h1>
+        <a href="dashboard-profile.html" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+        </a>
+    </header>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
     <div class="dashboard-container">
+        <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="sidebar-logo">
-                <a href="index.html" class="logo">
+            <div class="sidebar-header">
+                <div class="logo">
                     <div class="logo-icon">LB</div>
                     <span>Leadbunker</span>
-                </a>
-                <button class="sidebar-close" onclick="toggleSidebar()">
-                    <i class="fas fa-times"></i>
-                </button>
+                </div>
             </div>
-            <ul class="sidebar-menu">
-                <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
-                <li><a href="dashboard-tasks.html"><i class="fas fa-folder-open"></i> My Tasks</a></li>
-                <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
-                <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
-                <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
-                <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
-                <li><a href="dashboard-analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
-                <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
-                <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
-                <li><a href="dashboard-settings.html" class="active"><i class="fas fa-cog"></i> Settings</a></li>
-                <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
-                <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
-            </ul>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
+                    <li><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
+                    <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
+                    <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
+                    <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
+                    <li class="active"><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
         </aside>
 
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Dashboard Header -->
-            <div style="margin-bottom: 1.25rem;">
-                <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.35rem;"><i class="fas fa-cog"></i> Settings & Preferences</h1>
-                <p style="color: #6B7280; font-size: 0.85rem; margin: 0;">Customize your Leadbunker experience</p>
-            </div>
-            
-            <div style="margin-bottom: 2rem;">
-                <h1 style="font-size: 1rem; font-weight: 700;"><i class="fas fa-cog"></i> Settings & Preferences</h1>
-                <p style="color: #6B7280;">Customize your Leadbunker experience</p>
-            </div>
+            <header class="main-header">
+                <h1>Settings</h1>
+                 <div class="header-actions">
+                    <button class="icon-btn"><i class="fas fa-bell"></i></button>
+                    <button class="icon-btn"><i class="fas fa-search"></i></button>
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="welcome-text">Welcome back</span>
+                            <span class="user-name">Yehor Vasishchev</span>
+                        </div>
+                        <img src="https://i.pravatar.cc/40?u=yehor" alt="User Avatar" class="user-avatar">
+                    </div>
+                </div>
+            </header>
 
-            <!-- Notifications -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;"><i class="fas fa-envelope"></i> Email Notifications</h2>
-                <div class="setting-item">
+            <!-- Account Settings -->
+            <section class="card">
+                <div class="card-header">
                     <div>
-                        <h4>Extraction Complete</h4>
-                        <p style="color: #6B7280; margin: 0;">Get notified when your extraction tasks finish</p>
+                        <h2><i class="fas fa-user-cog"></i> Account Settings</h2>
+                        <p class="card-subtitle">Manage your account preferences and information</p>
                     </div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                    </label>
                 </div>
-                <div class="setting-item">
-                    <div>
-                        <h4>Credit Low Warning</h4>
-                        <p style="color: #6B7280; margin: 0;">Alert when credits fall below 100</p>
+                
+                <form class="settings-form">
+                    <div class="settings-section">
+                        <h3>Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-user"></i> Full Name</label>
+                                <input type="text" class="form-input" value="Yehor Vasishchev">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-envelope"></i> Email Address</label>
+                                <input type="email" class="form-input" value="yehor@company.com">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-phone"></i> Phone Number</label>
+                                <input type="tel" class="form-input" placeholder="+1 (555) 000-0000">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-building"></i> Company Name</label>
+                                <input type="text" class="form-input" placeholder="Your Company">
+                            </div>
+                        </div>
                     </div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div class="setting-item">
-                    <div>
-                        <h4>Weekly Reports</h4>
-                        <p style="color: #6B7280; margin: 0;">Receive weekly analytics summary</p>
-                    </div>
-                    <label class="toggle-switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div class="setting-item">
-                    <div>
-                        <h4>Marketing Emails</h4>
-                        <p style="color: #6B7280; margin: 0;">Product updates and tips</p>
-                    </div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
 
-            <!-- Extraction Defaults -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;"><i class="fas fa-wrench"></i> Extraction Defaults</h2>
-                <div class="setting-item">
-                    <div style="flex: 1;">
-                        <h4>Default Export Format</h4>
-                        <p style="color: #6B7280; margin: 0;">Choose your preferred export format</p>
+                    <div class="settings-section">
+                        <h3>Notifications</h3>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked>
+                                <span>Email notifications for completed extractions</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked>
+                                <span>Weekly usage summary reports</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox">
+                                <span>Marketing and promotional emails</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked>
+                                <span>Security alerts and updates</span>
+                            </label>
+                        </div>
                     </div>
-                    <select style="padding: 0.75rem; border: 2px solid #E5E7EB; border-radius: 8px; width: 200px;">
-                        <option>CSV</option>
-                        <option>Excel (XLSX)</option>
-                        <option>JSON</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <div style="flex: 1;">
-                        <h4>Default Crawl Depth</h4>
-                        <p style="color: #6B7280; margin: 0;">How many pages to crawl by default</p>
-                    </div>
-                    <select style="padding: 0.75rem; border: 2px solid #E5E7EB; border-radius: 8px; width: 200px;">
-                        <option>1 Page</option>
-                        <option selected>2 Pages</option>
-                        <option>3 Pages</option>
-                        <option>All Pages</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <div>
-                        <h4>Auto-validate Emails</h4>
-                        <p style="color: #6B7280; margin: 0;">Run AI validation automatically</p>
-                    </div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div class="setting-item">
-                    <div>
-                        <h4>Remove Duplicates</h4>
-                        <p style="color: #6B7280; margin: 0;">Automatically remove duplicate contacts</p>
-                    </div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
 
-            <!-- Privacy & Data -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;"><i class="fas fa-lock"></i> Privacy & Data</h2>
-                <div class="setting-item">
-                    <div style="flex: 1;">
-                        <h4>Data Retention</h4>
-                        <p style="color: #6B7280; margin: 0;">How long to keep extracted data</p>
+                    <div class="settings-section">
+                        <h3>Security</h3>
+                        <div class="form-group">
+                            <label><i class="fas fa-lock"></i> Change Password</label>
+                            <button type="button" class="btn btn-secondary">
+                                <i class="fas fa-key"></i> Update Password
+                            </button>
+                        </div>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked>
+                                <span>Enable two-factor authentication (2FA)</span>
+                            </label>
+                        </div>
                     </div>
-                    <select style="padding: 0.75rem; border: 2px solid #E5E7EB; border-radius: 8px; width: 200px;">
-                        <option>7 Days</option>
-                        <option>14 Days</option>
-                        <option selected>30 Days</option>
-                        <option>90 Days</option>
-                    </select>
-                </div>
-                <div class="setting-item">
-                    <div>
-                        <h4>Anonymous Usage Stats</h4>
-                        <p style="color: #6B7280; margin: 0;">Help us improve by sharing anonymous data</p>
-                    </div>
-                    <label class="toggle-switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div style="padding-top: 1.5rem;">
-                    <button class="btn btn-outline"><i class="fas fa-download"></i> Download My Data (GDPR)</button>
-                    <button class="btn btn-outline" style="margin-left: 1rem;">🗑️ Delete My Data</button>
-                </div>
-            </div>
 
-            <!-- Integration & Webhooks -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;"><i class="fas fa-link"></i> Integrations & Webhooks</h2>
-                <div class="setting-item">
-                    <div style="flex: 1;">
-                        <h4>Global Webhook URL</h4>
-                        <p style="color: #6B7280; margin: 0;">Receive notifications for all events</p>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                        <button type="button" class="btn btn-secondary">Cancel</button>
                     </div>
-                    <input type="url" placeholder="https://yourapi.com/webhook" style="flex: 1; padding: 0.6rem; border: 2px solid #E5E7EB; border-radius: 8px; max-width: 400px;">
-                </div>
-                <div class="setting-item">
-                    <div>
-                        <h4>Slack Notifications</h4>
-                        <p style="color: #6B7280; margin: 0;">Connect Slack workspace</p>
-                    </div>
-                    <button class="btn btn-primary">Connect Slack</button>
-                </div>
-                <div class="setting-item">
-                    <div>
-                        <h4>Zapier Integration</h4>
-                        <p style="color: #6B7280; margin: 0;">Automate workflows with Zapier</p>
-                    </div>
-                    <button class="btn btn-primary">Connect Zapier</button>
-                </div>
-            </div>
+                </form>
+            </section>
 
-            <!-- Language & Region -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">🌍 Language & Region</h2>
-                <div class="setting-item">
-                    <div style="flex: 1;">
-                        <h4>Language</h4>
-                        <p style="color: #6B7280; margin: 0;">Interface language</p>
-                    </div>
-                    <select style="padding: 0.75rem; border: 2px solid #E5E7EB; border-radius: 8px; width: 200px;">
-                        <option selected>English</option>
-                        <option>Español</option>
-                        <option>Français</option>
-                        <option>Deutsch</option>
-                        <option>Português</option>
-                    </select>
+            <!-- Danger Zone -->
+            <section class="card danger-zone">
+                <div class="card-header">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Danger Zone</h3>
                 </div>
-                <div class="setting-item">
-                    <div style="flex: 1;">
-                        <h4>Timezone</h4>
-                        <p style="color: #6B7280; margin: 0;">Your local timezone</p>
+                <div class="danger-actions">
+                    <div>
+                        <strong>Delete Account</strong>
+                        <p>Permanently delete your account and all associated data</p>
                     </div>
-                    <select style="padding: 0.75rem; border: 2px solid #E5E7EB; border-radius: 8px; width: 200px;">
-                        <option selected>UTC-5 (EST)</option>
-                        <option>UTC-8 (PST)</option>
-                        <option>UTC+0 (GMT)</option>
-                        <option>UTC+1 (CET)</option>
-                    </select>
+                    <button class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Delete Account
+                    </button>
                 </div>
-            </div>
-
-            <!-- Save Button -->
-            <div style="display: flex; gap: 1rem;">
-                <button class="btn btn-primary btn-large">💾 Save All Settings</button>
-                <button class="btn btn-outline btn-large">Reset to Defaults</button>
-            </div>
+            </section>
         </main>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    &copy; 2024 <strong>Leadbunker</strong>. All rights reserved.
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <script>
-        document.querySelector('.btn-primary.btn-large').addEventListener('click', function() {
-            alert('Settings saved successfully!');
-        });
-    </script>
-
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
-
-    <script>
-        // Mobile menu toggle
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            
-            if (sidebar && overlay) {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('active');
-                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
-            }
-        }
-        
-        // Close sidebar when clicking a menu item on mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuLinks = document.querySelectorAll('.sidebar-menu a');
-            menuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        toggleSidebar();
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
-

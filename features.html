@@ -10,20 +10,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
             <div class="nav-content">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <a href="index.html" class="logo">
                     <div class="logo-icon">LB</div>
                     <span>Leadbunker</span>
                 </a>
-                <ul class="nav-menu">
-                    <li><a href="features.html" style="color: #4F46E5;">Features</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="how-it-works.html">How It Works</a></li>
-                    <li><a href="compliance.html">Compliance</a></li>
-                    <li><a href="about.html">About</a></li>
+                <ul class="nav-menu" id="navMenu">
+                    <li class="mobile-only-nav"><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="features.html" style="color: #4F46E5;"><i class="fas fa-star"></i> Features</a></li>
+                    <li><a href="pricing.html"><i class="fas fa-tag"></i> Pricing</a></li>
+                    <li><a href="how-it-works.html"><i class="fas fa-info-circle"></i> How It Works</a></li>
+                    <li><a href="compliance.html"><i class="fas fa-shield-alt"></i> Compliance</a></li>
+                    <li><a href="about.html"><i class="fas fa-users"></i> About</a></li>
+                    <li class="mobile-only-nav"><a href="login.html" class="mobile-nav-btn btn-outline"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+                    <li class="mobile-only-nav"><a href="signup.html" class="mobile-nav-btn btn-primary"><i class="fas fa-rocket"></i> Start Free Trial</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="login.html" class="btn btn-outline">Sign In</a>
@@ -35,6 +47,12 @@
 
     <!-- Features Hero -->
     <section class="hero" style="padding: 3rem 0;">
+        <!-- Animated Decorative Elements -->
+        <div class="hero-decorator decorator-1"></div>
+        <div class="hero-decorator decorator-2"></div>
+        <div class="hero-decorator decorator-3"></div>
+        
+
         <div class="container">
             <div class="section-header">
                 <h1>Complete Lead Generation Toolkit</h1>
@@ -357,6 +375,12 @@
             </div>
         </div>
     </footer>
+
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <script src="js/main.js"></script>
 </body>

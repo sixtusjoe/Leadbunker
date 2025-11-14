@@ -1,13 +1,57 @@
 // Leadbunker - Main JavaScript File - Enhanced & Animated
 
-// Mobile Menu Toggle (for future implementation)
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Leadbunker Frontend Loaded Successfully');
+    
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    
+    if (mobileMenuToggle && navMenu) {
+        const toggleMenu = (show) => {
+            navMenu.classList.toggle('active', show);
+            mobileMenuOverlay.classList.toggle('active', show);
+            document.body.style.overflow = show ? 'hidden' : '';
+            
+            const icon = mobileMenuToggle.querySelector('i');
+            if (show) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        };
+        
+        mobileMenuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleMenu(!navMenu.classList.contains('active'));
+        });
+        
+        // Close menu when clicking overlay
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', () => {
+                toggleMenu(false);
+            });
+        }
+        
+        // Close menu when clicking a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu(false);
+            });
+        });
+    }
     
     // Animated Navbar on Scroll
     let lastScroll = 0;
     const navbar = document.querySelector('.navbar');
     const scrollProgress = document.getElementById('scrollProgress');
+    
+    // Parallax effect for hero decorators
+    const heroDecorators = document.querySelectorAll('.hero-decorator');
+    const floatingIcons = document.querySelectorAll('.floating-icon');
     
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
@@ -26,8 +70,48 @@ document.addEventListener('DOMContentLoaded', function() {
             scrollProgress.style.transform = `scaleX(${scrolled / 100})`;
         }
         
+        // Parallax effect for hero elements
+        if (currentScroll < 1000) { // Only apply in hero section
+            heroDecorators.forEach((decorator, index) => {
+                const speed = 0.3 + (index * 0.1);
+                const yPos = currentScroll * speed;
+                const rotation = currentScroll * (0.05 + index * 0.02);
+                decorator.style.transform = `translateY(${yPos}px) rotate(${rotation}deg)`;
+            });
+            
+            floatingIcons.forEach((icon, index) => {
+                const speed = 0.2 + (index * 0.05);
+                const yPos = currentScroll * speed;
+                icon.style.transform = `translateY(${yPos}px)`;
+            });
+        }
+        
         lastScroll = currentScroll;
     });
+    
+    // Mouse movement effect for hero section
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const { innerWidth, innerHeight } = window;
+            
+            const xPercent = (clientX / innerWidth - 0.5) * 20;
+            const yPercent = (clientY / innerHeight - 0.5) * 20;
+            
+            heroDecorators.forEach((decorator, index) => {
+                const speed = 0.5 + (index * 0.2);
+                decorator.style.transition = 'transform 0.3s ease-out';
+                decorator.style.transform = `translate(${xPercent * speed}px, ${yPercent * speed}px) rotate(${xPercent * 0.5}deg)`;
+            });
+            
+            floatingIcons.forEach((icon, index) => {
+                const speed = 0.3 + (index * 0.1);
+                icon.style.transition = 'transform 0.3s ease-out';
+                icon.style.transform = `translate(${xPercent * speed}px, ${yPercent * speed}px)`;
+            });
+        });
+    }
     
     // Number counter animation
     const animateValue = (element, start, end, duration) => {
@@ -163,6 +247,25 @@ document.addEventListener('DOMContentLoaded', function() {
             link.style.color = '#4F46E5';
         }
     });
+    
+    // Back to Top Button
+    const backToTopBtn = document.querySelector('.back-to-top');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
     // Cookie consent banner (optional - for future implementation)
     // Uncomment when backend is ready

@@ -2,204 +2,225 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>API Keys - Leadbunker Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body { background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%); }
-        .dashboard-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
-        .sidebar { background: rgba(31, 41, 55, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: white; padding: 2rem 0; box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); }
-        .sidebar-logo { padding: 0 1.5rem; margin-bottom: 2rem; }
-        .sidebar-menu { list-style: none; }
-        .sidebar-menu li { margin-bottom: 0.5rem; }
-                .sidebar-menu a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; margin: 0 0.75rem; color: rgba(255, 255, 255, 0.75); text-decoration: none; transition: all 0.3s ease; border-radius: 12px; font-size: 0.85rem; font-weight: 600; position: relative; }
-        .sidebar-menu a:hover { background: rgba(99, 102, 241, 0.15); color: white; transform: translateX(5px); }
-        .sidebar-menu a.active { background: rgba(99, 102, 241, 0.25); color: white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
-        .sidebar-menu a.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 60%; background: linear-gradient(180deg, #6366F1, #A78BFA); border-radius: 0 4px 4px 0; }
-        .main-content { padding: 0.75rem; max-width: 1200px; margin: 0 auto; }
-        .content-card { background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-bottom: 0.75rem; }
-        .api-key-card { border: 2px solid #E5E7EB; border-radius: 12px; padding: 0.75rem; margin-bottom: 0.75rem; }
-        .key-display { background: #F9FAFB; padding: 0.75rem; border-radius: 8px; font-family: monospace; word-break: break-all; margin: 1rem 0; }
-        .code-block { background: #1F2937; color: #D1D5DB; padding: 0.75rem; border-radius: 8px; font-family: monospace; overflow-x: auto; margin: 1rem 0; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Keys - Leadbunker Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">API Keys</h1>
+        <a href="dashboard-profile.html" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+        </a>
+    </header>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
     <div class="dashboard-container">
+        <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="sidebar-logo">
-                <a href="index.html" class="logo">
+            <div class="sidebar-header">
+                <div class="logo">
                     <div class="logo-icon">LB</div>
                     <span>Leadbunker</span>
-                </a>
-                <button class="sidebar-close" onclick="toggleSidebar()">
-                    <i class="fas fa-times"></i>
-                </button>
+                </div>
             </div>
-            <ul class="sidebar-menu">
-                <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
-                <li><a href="dashboard-tasks.html"><i class="fas fa-folder-open"></i> My Tasks</a></li>
-                <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
-                <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
-                <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
-                <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
-                <li><a href="dashboard-analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
-                <li><a href="dashboard-api-keys.html" class="active"><i class="fas fa-key"></i> API Keys</a></li>
-                <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
-                <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
-                <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
-            </ul>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
+                    <li><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
+                    <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
+                    <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
+                    <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li class="active"><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
+                    <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
         </aside>
 
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Dashboard Header -->
-            <div style="margin-bottom: 1.25rem;">
-                <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.35rem;"><i class="fas fa-key"></i> API Keys</h1>
-                <p style="color: #6B7280; font-size: 0.85rem; margin: 0;">Manage your API keys for automated lead extraction</p>
-            </div>
-            
-            <div style="margin-bottom: 2rem;">
-                <h1 style="font-size: 1rem; font-weight: 700;"><i class="fas fa-wrench"></i> API Keys</h1>
-                <p style="color: #6B7280;">Manage your API keys for automated lead extraction</p>
-            </div>
-
-            <!-- Create New API Key -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Create New API Key</h2>
-                <form id="createKeyForm">
-                    <div style="margin-bottom: 0.75rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Key Name *</label>
-                        <input type="text" placeholder="e.g., Production Server" style="width: 100%; padding: 0.6rem; border: 2px solid #E5E7EB; border-radius: 8px;" required>
-                    </div>
-                    <div style="margin-bottom: 0.75rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Permissions</label>
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                            <label><input type="checkbox" checked> Read Access</label>
-                            <label><input type="checkbox" checked> Write Access (Start Extractions)</label>
-                            <label><input type="checkbox"> Delete Access</label>
+            <header class="main-header">
+                <h1>Api Keys</h1>
+                 <div class="header-actions">
+                    <button class="icon-btn"><i class="fas fa-bell"></i></button>
+                    <button class="icon-btn"><i class="fas fa-search"></i></button>
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="welcome-text">Welcome back</span>
+                            <span class="user-name">Yehor Vasishchev</span>
                         </div>
+                        <img src="https://i.pravatar.cc/40?u=yehor" alt="User Avatar" class="user-avatar">
                     </div>
-                    <button type="submit" class="btn btn-primary">Generate API Key</button>
-                </form>
-            </div>
+                </div>
+            </header>
 
-            <!-- Existing API Keys -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Your API Keys</h2>
+            <!-- Generate New Key -->
+            <section class="card">
+                <div class="card-header">
+                    <div>
+                        <h2><i class="fas fa-key"></i> API Keys</h2>
+                        <p class="card-subtitle">Manage your API keys for programmatic access</p>
+                    </div>
+                    <div class="header-right">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Generate New Key
+                        </button>
+                    </div>
+                </div>
                 
-                <div class="api-key-card">
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
-                        <div>
-                            <h3 style="font-size: 1rem; font-weight: 600;">Production Server</h3>
-                            <p style="color: #6B7280; margin: 0.5rem 0;">Created on Jan 15, 2025</p>
-                        </div>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem;">Edit</button>
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem; color: #EF4444;">Revoke</button>
-                        </div>
+                <div class="api-info-box">
+                    <div class="info-icon">
+                        <i class="fas fa-info-circle"></i>
                     </div>
-                    <div class="key-display">
-                        lb_prod_1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0
-                        <button class="btn btn-outline" style="padding: 0.25rem 0.75rem; margin-left: 1rem;" onclick="navigator.clipboard.writeText('lb_prod_1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0')"><i class="fas fa-clipboard"></i> Copy</button>
-                    </div>
-                    <div style="display: flex; gap: 0.75rem; color: #6B7280; font-size: 0.85rem;">
-                        <span><i class="fas fa-check"></i> Read Access</span>
-                        <span><i class="fas fa-check"></i> Write Access</span>
-                        <span>Last used: 2 hours ago</span>
+                    <div>
+                        <h4>API Documentation</h4>
+                        <p>Use our REST API to integrate Leadbunker into your applications. <a href="#" class="link-primary">View API Docs</a></p>
                     </div>
                 </div>
+            </section>
 
-                <div class="api-key-card">
-                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem;">
-                        <div>
-                            <h3 style="font-size: 1rem; font-weight: 600;">Development Testing</h3>
-                            <p style="color: #6B7280; margin: 0.5rem 0;">Created on Dec 10, 2024</p>
-                        </div>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem;">Edit</button>
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem; color: #EF4444;">Revoke</button>
-                        </div>
-                    </div>
-                    <div class="key-display">
-                        lb_dev_9z8y7x6w5v4u3t2s1r0q9p8o7n6m5l4k3j2i1h0
-                        <button class="btn btn-outline" style="padding: 0.25rem 0.75rem; margin-left: 1rem;" onclick="navigator.clipboard.writeText('lb_dev_9z8y7x6w5v4u3t2s1r0q9p8o7n6m5l4k3j2i1h0')"><i class="fas fa-clipboard"></i> Copy</button>
-                    </div>
-                    <div style="display: flex; gap: 0.75rem; color: #6B7280; font-size: 0.85rem;">
-                        <span><i class="fas fa-check"></i> Read Access</span>
-                        <span>Last used: Never</span>
-                    </div>
+            <!-- Active API Keys -->
+            <section class="card">
+                <div class="card-header">
+                    <h3>Active API Keys</h3>
                 </div>
-            </div>
-
-            <!-- API Documentation -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;"><i class="fas fa-book"></i> Quick Start Guide</h2>
-                <p style="color: #6B7280; margin-bottom: 0.75rem;">Use our REST API to integrate Leadbunker into your applications</p>
                 
-                <h3 style="font-size: 1rem; font-weight: 600;" style="margin-top: 1.5rem;">Authentication</h3>
-                <p style="color: #6B7280;">Include your API key in the Authorization header:</p>
-                <div class="code-block">
-curl -H "Authorization: Bearer YOUR_API_KEY" \<br/>
-&nbsp;&nbsp;https://api.leadbunker.com/v1/extract
-                </div>
+                <div class="api-keys-list">
+                    <div class="api-key-item">
+                        <div class="key-info">
+                            <div class="key-header">
+                                <strong>Production Key</strong>
+                                <span class="badge badge-success">Active</span>
+                            </div>
+                            <div class="key-value">
+                                <code>lb_live_4h8k2j9d8f7g6h5j4k3l2m1n</code>
+                                <button class="btn-icon" title="Copy to clipboard">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="key-meta">
+                                <span><i class="fas fa-calendar"></i> Created: Nov 1, 2024</span>
+                                <span><i class="fas fa-clock"></i> Last used: 2 hours ago</span>
+                                <span><i class="fas fa-chart-line"></i> 1,247 requests</span>
+                            </div>
+                        </div>
+                        <div class="key-actions">
+                            <button class="btn-sm btn-secondary">Edit</button>
+                            <button class="btn-sm btn-danger">Revoke</button>
+                        </div>
+                    </div>
 
-                <h3 style="font-size: 1rem; font-weight: 600;" style="margin-top: 1.5rem;">Start Extraction</h3>
-                <div class="code-block">
-curl -X POST https://api.leadbunker.com/v1/extract \<br/>
-&nbsp;&nbsp;-H "Authorization: Bearer YOUR_API_KEY" \<br/>
-&nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
-&nbsp;&nbsp;-d '{"url": "https://example.com", "type": "full"}'
-                </div>
+                    <div class="api-key-item">
+                        <div class="key-info">
+                            <div class="key-header">
+                                <strong>Development Key</strong>
+                                <span class="badge badge-info">Active</span>
+                            </div>
+                            <div class="key-value">
+                                <code>lb_test_9j8h7g6f5d4s3a2q1w0e9r8t</code>
+                                <button class="btn-icon" title="Copy to clipboard">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <div class="key-meta">
+                                <span><i class="fas fa-calendar"></i> Created: Oct 15, 2024</span>
+                                <span><i class="fas fa-clock"></i> Last used: 1 day ago</span>
+                                <span><i class="fas fa-chart-line"></i> 523 requests</span>
+                            </div>
+                        </div>
+                        <div class="key-actions">
+                            <button class="btn-sm btn-secondary">Edit</button>
+                            <button class="btn-sm btn-danger">Revoke</button>
+                        </div>
+                    </div>
 
-                <h3 style="font-size: 1rem; font-weight: 600;" style="margin-top: 1.5rem;">Get Task Status</h3>
-                <div class="code-block">
-curl https://api.leadbunker.com/v1/tasks/TASK_ID \<br/>
-&nbsp;&nbsp;-H "Authorization: Bearer YOUR_API_KEY"
+                    <div class="api-key-item revoked">
+                        <div class="key-info">
+                            <div class="key-header">
+                                <strong>Old Production Key</strong>
+                                <span class="badge badge-secondary">Revoked</span>
+                            </div>
+                            <div class="key-value">
+                                <code>lb_live_************************</code>
+                            </div>
+                            <div class="key-meta">
+                                <span><i class="fas fa-calendar"></i> Created: Sep 1, 2024</span>
+                                <span><i class="fas fa-ban"></i> Revoked: Nov 1, 2024</span>
+                            </div>
+                        </div>
+                        <div class="key-actions">
+                            <button class="btn-sm btn-secondary" disabled>Deleted</button>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <a href="#" class="btn btn-outline" style="margin-top: 1rem;">📚 View Full API Documentation</a>
-            </div>
+            <!-- API Usage Stats -->
+            <section class="card">
+                <div class="card-header">
+                    <h3>API Usage (Last 30 Days)</h3>
+                </div>
+                
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">1,770</div>
+                            <div class="stat-label">Total Requests</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">99.2%</div>
+                            <div class="stat-label">Success Rate</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">142ms</div>
+                            <div class="stat-label">Avg Response Time</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    &copy; 2024 <strong>Leadbunker</strong>. All rights reserved.
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <script>
-        document.getElementById('createKeyForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('New API key generated successfully! Make sure to copy it now as it won\'t be shown again.');
-        });
-    </script>
-
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
-
-    <script>
-        // Mobile menu toggle
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            
-            if (sidebar && overlay) {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('active');
-                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
-            }
-        }
-        
-        // Close sidebar when clicking a menu item on mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuLinks = document.querySelectorAll('.sidebar-menu a');
-            menuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        toggleSidebar();
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
-

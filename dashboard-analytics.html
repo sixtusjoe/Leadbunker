@@ -2,180 +2,305 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analytics - Leadbunker Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body { background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%); }
-        .dashboard-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
-        .sidebar { background: rgba(31, 41, 55, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: white; padding: 2rem 0; box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); }
-        .sidebar-logo { padding: 0 1.5rem; margin-bottom: 2rem; }
-        .sidebar-menu { list-style: none; }
-        .sidebar-menu li { margin-bottom: 0.5rem; }
-                .sidebar-menu a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; margin: 0 0.75rem; color: rgba(255, 255, 255, 0.75); text-decoration: none; transition: all 0.3s ease; border-radius: 12px; font-size: 0.85rem; font-weight: 600; position: relative; }
-        .sidebar-menu a:hover { background: rgba(99, 102, 241, 0.15); color: white; transform: translateX(5px); }
-        .sidebar-menu a.active { background: rgba(99, 102, 241, 0.25); color: white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
-        .sidebar-menu a.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 60%; background: linear-gradient(180deg, #6366F1, #A78BFA); border-radius: 0 4px 4px 0; }
-        .main-content { padding: 0.75rem; max-width: 1300px; margin: 0 auto; }
-        .content-card { background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-bottom: 0.75rem; }
-        .chart-placeholder { background: linear-gradient(135deg, #E0E7FF, #C7D2FE); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #4F46E5; font-weight: 600; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Analytics</h1>
+        <a href="dashboard-profile.html" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+        </a>
+    </header>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
     <div class="dashboard-container">
+        <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="sidebar-logo">
-                <a href="index.html" class="logo">
+            <div class="sidebar-header">
+                <div class="logo">
                     <div class="logo-icon">LB</div>
                     <span>Leadbunker</span>
-                </a>
-                <button class="sidebar-close" onclick="toggleSidebar()">
-                    <i class="fas fa-times"></i>
-                </button>
+                </div>
             </div>
-            <ul class="sidebar-menu">
-                <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
-                <li><a href="dashboard-tasks.html"><i class="fas fa-folder-open"></i> My Tasks</a></li>
-                <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
-                <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
-                <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
-                <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
-                <li><a href="dashboard-analytics.html" class="active"><i class="fas fa-chart-line"></i> Analytics</a></li>
-                <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
-                <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
-                <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
-                <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
-            </ul>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
+                    <li><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
+                    <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
+                    <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
+                    <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li class="active"><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
+                    <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
         </aside>
 
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Dashboard Header -->
-            <div style="margin-bottom: 1.25rem;">
-                <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.35rem;"><i class="fas fa-chart-bar"></i> Analytics & Reports</h1>
-                <p style="color: #6B7280; font-size: 0.85rem; margin: 0;">Track your extraction performance and insights</p>
-            </div>
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <div>
-                    <h1 style="font-size: 1rem; font-weight: 700;"><i class="fas fa-chart-bar"></i> Analytics & Reports</h1>
-                    <p style="color: #6B7280;">Track your extraction performance and insights</p>
-                </div>
-                <select style="padding: 0.75rem; border: 2px solid #E5E7EB; border-radius: 8px;">
-                    <option>Last 7 Days</option>
-                    <option>Last 30 Days</option>
-                    <option>Last 3 Months</option>
-                    <option>All Time</option>
-                </select>
-            </div>
-
-            <!-- Key Metrics -->
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; gap: 0.85rem; margin-bottom: 2rem;">
-                <div style="background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
-                    <div style="color: #6B7280; margin-bottom: 0.5rem;">Total Extractions</div>
-                    <div style="font-size: 0.95rem; font-weight: 700; color: #4F46E5;">247</div>
-                    <div style="color: #10B981; font-size: 0.85rem; margin-top: 0.5rem;">↑ 12% from last month</div>
-                </div>
-                <div style="background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
-                    <div style="color: #6B7280; margin-bottom: 0.5rem;">Success Rate</div>
-                    <div style="font-size: 0.95rem; font-weight: 700; color: #10B981;">94.7%</div>
-                    <div style="color: #10B981; font-size: 0.85rem; margin-top: 0.5rem;">↑ 2.3% improvement</div>
-                </div>
-                <div style="background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
-                    <div style="color: #6B7280; margin-bottom: 0.5rem;">Avg. Emails/Task</div>
-                    <div style="font-size: 0.95rem; font-weight: 700; color: #06B6D4;">36.2</div>
-                    <div style="color: #6B7280; font-size: 0.85rem; margin-top: 0.5rem;">Stable</div>
-                </div>
-                <div style="background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
-                    <div style="color: #6B7280; margin-bottom: 0.5rem;">Credits Used</div>
-                    <div style="font-size: 0.95rem; font-weight: 700; color: #8B5CF6;">1,823</div>
-                    <div style="color: #EF4444; font-size: 0.85rem; margin-top: 0.5rem;">↑ 18% increase</div>
-                </div>
-            </div>
-
-            <!-- Extraction Activity Chart -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Extraction Activity</h2>
-                <div class="chart-placeholder">
-                    📈 Extraction Activity Chart<br/>(Chart.js integration here)
-                </div>
-            </div>
-
-            <!-- Email Quality Distribution -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
-                <div class="content-card">
-                    <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Email Quality Distribution</h2>
-                    <div class="chart-placeholder" style="height: 250px;">
-                        🥧 Pie Chart<br/>(Valid vs Invalid Emails)
+            <header class="main-header">
+                <h1>Analytics</h1>
+                 <div class="header-actions">
+                    <button class="icon-btn"><i class="fas fa-bell"></i></button>
+                    <button class="icon-btn"><i class="fas fa-search"></i></button>
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="welcome-text">Welcome back</span>
+                            <span class="user-name">Yehor Vasishchev</span>
+                        </div>
+                        <img src="https://i.pravatar.cc/40?u=yehor" alt="User Avatar" class="user-avatar">
                     </div>
                 </div>
-                <div class="content-card">
-                    <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Top Performing Sources</h2>
-                    <div style="display: flex; flex-direction: column; gap: 1rem;">
-                        <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; border-bottom: 1px solid #E5E7EB;">
-                            <span>example.com</span>
-                            <strong>145 contacts</strong>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; border-bottom: 1px solid #E5E7EB;">
-                            <span>saascompany.com</span>
-                            <strong>287 contacts</strong>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; border-bottom: 1px solid #E5E7EB;">
-                            <span>blockchain-project.com</span>
-                            <strong>156 contacts</strong>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; padding-bottom: 0.5rem; border-bottom: 1px solid #E5E7EB;">
-                            <span>techstartup.io</span>
-                            <strong>89 contacts</strong>
-                        </div>
+            </header>
+
+            <!-- Overview Stats -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">247</div>
+                        <div class="stat-label">Total Extractions</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">94.7%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">1,823</div>
+                        <div class="stat-label">Credits Used</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Export Report -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;"><i class="fas fa-download"></i> Export Analytics Report</h2>
-                <p style="color: #6B7280; margin-bottom: 0.75rem;">Download detailed analytics reports for your records</p>
-                <div style="display: flex; gap: 1rem;">
-                    <button class="btn btn-primary">Export PDF</button>
-                    <button class="btn btn-outline">Export CSV</button>
-                    <button class="btn btn-outline">Export Excel</button>
+            <!-- Time Period Filter -->
+            <section class="filter-bar card">
+                <div class="filter-group">
+                    <select class="form-select">
+                        <option value="7">Last 7 Days</option>
+                        <option value="30" selected>Last 30 Days</option>
+                        <option value="90">Last 90 Days</option>
+                        <option value="365">Last Year</option>
+                    </select>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-download"></i> Export Report
+                    </button>
                 </div>
+            </section>
+
+            <!-- Charts Row 1 -->
+            <div class="analytics-grid">
+                <section class="card analytics-chart">
+                    <div class="card-header">
+                        <h3><i class="fas fa-chart-line"></i> Extraction Trends</h3>
+                    </div>
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-area chart-icon"></i>
+                        <p>Daily extraction activity over the past 30 days</p>
+                        <div class="chart-data">
+                            <div class="data-point">Mon: 12 extractions</div>
+                            <div class="data-point">Tue: 15 extractions</div>
+                            <div class="data-point">Wed: 18 extractions</div>
+                            <div class="data-point">Thu: 14 extractions</div>
+                            <div class="data-point">Fri: 16 extractions</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="card analytics-chart">
+                    <div class="card-header">
+                        <h3><i class="fas fa-pie-chart"></i> Extraction Types</h3>
+                    </div>
+                    <div class="chart-placeholder">
+                        <i class="fas fa-chart-pie chart-icon"></i>
+                        <div class="extraction-types-stats">
+                            <div class="type-stat">
+                                <span class="type-label">
+                                    <span class="type-dot" style="background: #667eea;"></span>
+                                    Full Extraction
+                                </span>
+                                <span class="type-value">45%</span>
+                            </div>
+                            <div class="type-stat">
+                                <span class="type-label">
+                                    <span class="type-dot" style="background: #4ade80;"></span>
+                                    Emails Only
+                                </span>
+                                <span class="type-value">35%</span>
+                            </div>
+                            <div class="type-stat">
+                                <span class="type-label">
+                                    <span class="type-dot" style="background: #f59e0b;"></span>
+                                    Phones Only
+                                </span>
+                                <span class="type-value">20%</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
+
+            <!-- Performance Metrics -->
+            <section class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-tachometer-alt"></i> Performance Metrics</h2>
+                    <p class="card-subtitle">Key performance indicators for your extractions</p>
+                </div>
+                
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">8.5 min</div>
+                            <div class="metric-label">Avg. Completion Time</div>
+                            <div class="metric-change positive">
+                                <i class="fas fa-arrow-down"></i> 12% faster
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">12,847</div>
+                            <div class="metric-label">Total Emails Extracted</div>
+                            <div class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i> 23% increase
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">8,423</div>
+                            <div class="metric-label">Total Phones Extracted</div>
+                            <div class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i> 18% increase
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">5.3%</div>
+                            <div class="metric-label">Error Rate</div>
+                            <div class="metric-change negative">
+                                <i class="fas fa-arrow-up"></i> 1.2% increase
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Top Sources -->
+            <section class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-globe"></i> Top Extracted Sources</h3>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="tasks-table">
+                        <thead>
+                            <tr>
+                                <th>Website</th>
+                                <th>Extractions</th>
+                                <th>Emails</th>
+                                <th>Phones</th>
+                                <th>Success Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>techstartup.io</strong></td>
+                                <td>45</td>
+                                <td>2,340</td>
+                                <td>1,245</td>
+                                <td><span class="badge badge-success">98%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>business-directory.com</strong></td>
+                                <td>38</td>
+                                <td>1,892</td>
+                                <td>1,034</td>
+                                <td><span class="badge badge-success">96%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>marketplace-hub.net</strong></td>
+                                <td>32</td>
+                                <td>1,567</td>
+                                <td>890</td>
+                                <td><span class="badge badge-success">95%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>global-contacts.com</strong></td>
+                                <td>28</td>
+                                <td>1,423</td>
+                                <td>756</td>
+                                <td><span class="badge badge-success">97%</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>enterprise-directory.io</strong></td>
+                                <td>24</td>
+                                <td>1,234</td>
+                                <td>623</td>
+                                <td><span class="badge badge-warning">89%</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </main>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    &copy; 2024 <strong>Leadbunker</strong>. All rights reserved.
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
-
-    <script>
-        // Mobile menu toggle
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            
-            if (sidebar && overlay) {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('active');
-                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
-            }
-        }
-        
-        // Close sidebar when clicking a menu item on mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuLinks = document.querySelectorAll('.sidebar-menu a');
-            menuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        toggleSidebar();
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
-

@@ -2,281 +2,243 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>My Tasks - Leadbunker Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body { background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%); }
-        .dashboard-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
-        .sidebar { background: rgba(31, 41, 55, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: white; padding: 2rem 0; box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); }
-        .sidebar-logo { padding: 0 1.5rem; margin-bottom: 2rem; }
-        .sidebar-menu { list-style: none; }
-        .sidebar-menu li { margin-bottom: 0.5rem; }
-                .sidebar-menu a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; margin: 0 0.75rem; color: rgba(255, 255, 255, 0.75); text-decoration: none; transition: all 0.3s ease; border-radius: 12px; font-size: 0.85rem; font-weight: 600; position: relative; }
-        .sidebar-menu a:hover { background: rgba(99, 102, 241, 0.15); color: white; transform: translateX(5px); }
-        .sidebar-menu a.active { background: rgba(99, 102, 241, 0.25); color: white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
-        .sidebar-menu a.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 60%; background: linear-gradient(180deg, #6366F1, #A78BFA); border-radius: 0 4px 4px 0; }
-        .main-content { padding: 0.75rem; max-width: 1300px; margin: 0 auto; }
-        .content-card { background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-bottom: 0.75rem; }
-        .tabs { display: flex; gap: 0.5rem; border-bottom: 2px solid #E5E7EB; margin-bottom: 0.75rem; }
-        .tab { padding: 0.6rem 1rem; background: none; border: none; font-weight: 600; cursor: pointer; color: #6B7280; border-bottom: 3px solid transparent; transition: all 0.3s; }
-        .tab.active { color: #4F46E5; border-bottom-color: #4F46E5; }
-        .task-card { border: 2px solid #E5E7EB; border-radius: 12px; padding: 0.75rem; margin-bottom: 0.75rem; transition: all 0.3s; }
-        .task-card:hover { border-color: #4F46E5; box-shadow: 0 5px 15px rgba(79, 70, 229, 0.1); }
-        .task-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.75rem; }
-        .task-meta { display: flex; gap: 1rem; flex-wrap: wrap; color: #6B7280; font-size: 0.85rem; }
-        .task-actions { display: flex; gap: 0.5rem; }
-        .status-badge { padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; }
-        .status-completed { background: #D1FAE5; color: #065F46; }
-        .status-processing { background: #FEF3C7; color: #92400E; }
-        .status-failed { background: #FEE2E2; color: #991B1B; }
-        .status-queued { background: #E0E7FF; color: #3730A3; }
-        .progress-bar { width: 100%; height: 8px; background: #E5E7EB; border-radius: 4px; overflow: hidden; margin: 0.5rem 0; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #4F46E5, #8B5CF6); transition: width 0.3s; }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks - Leadbunker Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">My Tasks</h1>
+        <a href="dashboard-profile.html" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+        </a>
+    </header>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
     <div class="dashboard-container">
+        <!-- Sidebar -->
         <aside class="sidebar">
-            <div class="sidebar-logo">
-                <a href="index.html" class="logo">
+            <div class="sidebar-header">
+                <div class="logo">
                     <div class="logo-icon">LB</div>
                     <span>Leadbunker</span>
-                </a>
-                <button class="sidebar-close" onclick="toggleSidebar()">
-                    <i class="fas fa-times"></i>
-                </button>
+                </div>
             </div>
-            <ul class="sidebar-menu">
-                <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
-                <li><a href="dashboard-tasks.html" class="active"><i class="fas fa-folder-open"></i> My Tasks</a></li>
-                <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
-                <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
-                <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
-                <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
-                <li><a href="dashboard-analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
-                <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
-                <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
-                <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
-                <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
-            </ul>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
+                    <li class="active"><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
+                    <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
+                    <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
+                    <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
+                    <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
         </aside>
 
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Dashboard Header -->
-            <div style="margin-bottom: 1.25rem;">
-                <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.35rem;"><i class="fas fa-folder-open"></i> My Extraction Tasks</h1>
-                <p style="color: #6B7280; font-size: 0.85rem; margin: 0;">View and manage all your extraction tasks</p>
-            </div>
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-                <div>
-                    <h1 style="font-size: 1rem; font-weight: 700;"><i class="fas fa-folder"></i> My Extraction Tasks</h1>
-                    <p style="color: #6B7280;">View and manage all your extraction tasks</p>
-                </div>
-                <a href="dashboard-new-extraction.html" class="btn btn-primary">+ New Extraction</a>
-            </div>
-
-            <!-- Tabs -->
-            <div class="tabs">
-                <button class="tab active" onclick="showTab('all')">All Tasks (247)</button>
-                <button class="tab" onclick="showTab('completed')">Completed (234)</button>
-                <button class="tab" onclick="showTab('processing')">Processing (3)</button>
-                <button class="tab" onclick="showTab('queued')">Queued (8)</button>
-                <button class="tab" onclick="showTab('failed')">Failed (2)</button>
-            </div>
-
-            <!-- Task List -->
-            <div id="taskList">
-                <!-- Processing Task -->
-                <div class="task-card">
-                    <div class="task-header">
-                        <div>
-                            <h3 style="font-size: 1rem; font-weight: 600;" style="margin-bottom: 0.5rem;">techstartup.io</h3>
-                            <span class="status-badge status-processing">Processing</span>
+            <header class="main-header">
+                <h1>Tasks</h1>
+                 <div class="header-actions">
+                    <button class="icon-btn"><i class="fas fa-bell"></i></button>
+                    <button class="icon-btn"><i class="fas fa-search"></i></button>
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="welcome-text">Welcome back</span>
+                            <span class="user-name">Yehor Vasishchev</span>
                         </div>
-                        <div class="task-actions">
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem;">View Details</button>
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem; color: #EF4444;">Cancel</button>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 65%;"></div>
-                    </div>
-                    <p style="color: #6B7280; font-size: 0.85rem; margin: 0.5rem 0;">65% complete - Extracting emails...</p>
-                    <div class="task-meta">
-                        <span><i class="fas fa-hashtag"></i> #LB-1233</span>
-                        <span><i class="fas fa-calendar"></i> Started 5 minutes ago</span>
-                        <span><i class="fas fa-envelope"></i> Type: Email Only</span>
-                        <span><i class="fas fa-gem"></i> Cost: 1 credit</span>
+                        <img src="https://i.pravatar.cc/40?u=yehor" alt="User Avatar" class="user-avatar">
                     </div>
                 </div>
+            </header>
 
-                <!-- Completed Task -->
-                <div class="task-card">
-                    <div class="task-header">
-                        <div>
-                            <h3 style="font-size: 1rem; font-weight: 600;" style="margin-bottom: 0.5rem;">example.com</h3>
-                            <span class="status-badge status-completed">Completed</span>
-                        </div>
-                        <div class="task-actions">
-                            <button class="btn btn-primary" style="padding: 0.5rem 1rem;"><i class="fas fa-download"></i> Download</button>
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem;">View Details</button>
-                        </div>
-                    </div>
-                    <div style="background: #F9FAFB; padding: 0.75rem; border-radius: 8px; margin: 1rem 0;">
-                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; gap: 1rem;">
-                            <div>
-                                <div style="color: #6B7280; font-size: 0.85rem;">Valid Emails</div>
-                                <div style="font-size: 0.85rem; font-weight: 700; color: #10B981;">145</div>
-                            </div>
-                            <div>
-                                <div style="color: #6B7280; font-size: 0.85rem;">Invalid Emails</div>
-                                <div style="font-size: 0.85rem; font-weight: 700; color: #EF4444;">12</div>
-                            </div>
-                            <div>
-                                <div style="color: #6B7280; font-size: 0.85rem;">Phone Numbers</div>
-                                <div style="font-size: 0.85rem; font-weight: 700; color: #4F46E5;">89</div>
-                            </div>
-                            <div>
-                                <div style="color: #6B7280; font-size: 0.85rem;">Social Profiles</div>
-                                <div style="font-size: 0.85rem; font-weight: 700; color: #06B6D4;">34</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="task-meta">
-                        <span><i class="fas fa-hashtag"></i> #LB-1234</span>
-                        <span><i class="fas fa-calendar"></i> Completed 2 hours ago</span>
-                        <span><i class="fas fa-envelope"></i> Type: Full Extraction</span>
-                        <span><i class="fas fa-gem"></i> Cost: 1 credit</span>
-                        <span><i class="fas fa-clock"></i> Duration: 3m 24s</span>
+            <!-- Tasks Filter Bar -->
+            <section class="filter-bar card">
+                <div class="filter-group">
+                    <input type="search" class="form-input search-input" placeholder="Search tasks...">
+                    <select class="form-select">
+                        <option value="all">All Status</option>
+                        <option value="completed">Completed</option>
+                        <option value="processing">Processing</option>
+                        <option value="pending">Pending</option>
+                        <option value="failed">Failed</option>
+                    </select>
+                    <select class="form-select">
+                        <option value="all">All Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                    </select>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-filter"></i> Apply Filters
+                    </button>
+                </div>
+            </section>
+
+            <!-- Tasks Table -->
+            <section class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-tasks"></i> Extraction Tasks</h2>
+                    <div class="header-right">
+                        <button class="btn btn-secondary btn-sm">
+                            <i class="fas fa-download"></i> Export All
+                        </button>
                     </div>
                 </div>
-
-                <!-- Queued Task -->
-                <div class="task-card">
-                    <div class="task-header">
-                        <div>
-                            <h3 style="font-size: 1rem; font-weight: 600;" style="margin-bottom: 0.5rem;">blockchain-project.com</h3>
-                            <span class="status-badge status-queued">Queued</span>
-                        </div>
-                        <div class="task-actions">
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem;">View Details</button>
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem; color: #EF4444;">Cancel</button>
-                        </div>
-                    </div>
-                    <p style="color: #6B7280; margin: 1rem 0;">Waiting in queue - Position #3</p>
-                    <div class="task-meta">
-                        <span><i class="fas fa-hashtag"></i> #LB-1235</span>
-                        <span><i class="fas fa-calendar"></i> Queued 10 minutes ago</span>
-                        <span><i class="fas fa-envelope"></i> Type: Full Extraction</span>
-                        <span><i class="fas fa-gem"></i> Cost: 1 credit</span>
-                    </div>
+                
+                <div class="table-responsive">
+                    <table class="tasks-table">
+                        <thead>
+                            <tr>
+                                <th>Task ID</th>
+                                <th>Website</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Results</th>
+                                <th>Credits</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>#LB-1245</strong></td>
+                                <td>techstartup.io</td>
+                                <td><span class="badge badge-info">Full Extraction</span></td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>234 emails, 145 phones</td>
+                                <td>20</td>
+                                <td>2 hours ago</td>
+                                <td>
+                                    <button class="btn-sm btn-primary">Download</button>
+                                    <button class="btn-sm btn-secondary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#LB-1244</strong></td>
+                                <td>business-directory.com</td>
+                                <td><span class="badge badge-primary">Emails Only</span></td>
+                                <td><span class="badge badge-warning">Processing</span></td>
+                                <td>65% complete</td>
+                                <td>10</td>
+                                <td>4 hours ago</td>
+                                <td>
+                                    <button class="btn-sm btn-secondary">View Progress</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#LB-1243</strong></td>
+                                <td>marketplace-hub.net</td>
+                                <td><span class="badge badge-info">Full Extraction</span></td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>489 emails, 267 phones</td>
+                                <td>20</td>
+                                <td>1 day ago</td>
+                                <td>
+                                    <button class="btn-sm btn-primary">Download</button>
+                                    <button class="btn-sm btn-secondary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#LB-1242</strong></td>
+                                <td>company-leads.org</td>
+                                <td><span class="badge badge-secondary">Phones Only</span></td>
+                                <td><span class="badge badge-danger">Failed</span></td>
+                                <td>Error: Invalid URL</td>
+                                <td>0</td>
+                                <td>1 day ago</td>
+                                <td>
+                                    <button class="btn-sm btn-warning">Retry</button>
+                                    <button class="btn-sm btn-secondary">Details</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#LB-1241</strong></td>
+                                <td>global-contacts.com</td>
+                                <td><span class="badge badge-info">Full Extraction</span></td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>892 emails, 534 phones</td>
+                                <td>30</td>
+                                <td>2 days ago</td>
+                                <td>
+                                    <button class="btn-sm btn-primary">Download</button>
+                                    <button class="btn-sm btn-secondary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#LB-1240</strong></td>
+                                <td>enterprise-directory.io</td>
+                                <td><span class="badge badge-primary">Emails Only</span></td>
+                                <td><span class="badge badge-success">Completed</span></td>
+                                <td>356 emails</td>
+                                <td>15</td>
+                                <td>3 days ago</td>
+                                <td>
+                                    <button class="btn-sm btn-primary">Download</button>
+                                    <button class="btn-sm btn-secondary">View</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#LB-1239</strong></td>
+                                <td>business-network.net</td>
+                                <td><span class="badge badge-info">Full Extraction</span></td>
+                                <td><span class="badge badge-secondary">Pending</span></td>
+                                <td>In queue</td>
+                                <td>20</td>
+                                <td>3 days ago</td>
+                                <td>
+                                    <button class="btn-sm btn-danger">Cancel</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <!-- Failed Task -->
-                <div class="task-card">
-                    <div class="task-header">
-                        <div>
-                            <h3 style="font-size: 1rem; font-weight: 600;" style="margin-bottom: 0.5rem;">invalidsite.xyz</h3>
-                            <span class="status-badge status-failed">Failed</span>
-                        </div>
-                        <div class="task-actions">
-                            <button class="btn btn-primary" style="padding: 0.5rem 1rem;"><i class="fas fa-sync"></i> Retry</button>
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem;">View Details</button>
-                        </div>
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="btn btn-sm btn-secondary" disabled>
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <div class="pagination-info">
+                        <span>Page <strong>1</strong> of <strong>12</strong></span>
                     </div>
-                    <div style="background: #FEE2E2; padding: 0.75rem; border-radius: 8px; border-left: 4px solid #EF4444; margin: 1rem 0;">
-                        <p style="margin: 0; color: #991B1B; font-weight: 600;">Error: Website not accessible (404)</p>
-                        <small style="color: #991B1B;">No credits were deducted for this failed extraction</small>
-                    </div>
-                    <div class="task-meta">
-                        <span><i class="fas fa-hashtag"></i> #LB-1236</span>
-                        <span><i class="fas fa-calendar"></i> Failed 3 days ago</span>
-                        <span><i class="fas fa-envelope"></i> Type: Email Only</span>
-                        <span><i class="fas fa-gem"></i> Cost: 0 credits (refunded)</span>
-                    </div>
+                    <button class="btn btn-sm btn-secondary">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
-
-                <!-- More completed tasks -->
-                <div class="task-card">
-                    <div class="task-header">
-                        <div>
-                            <h3 style="font-size: 1rem; font-weight: 600;" style="margin-bottom: 0.5rem;">saascompany.com</h3>
-                            <span class="status-badge status-completed">Completed</span>
-                        </div>
-                        <div class="task-actions">
-                            <button class="btn btn-primary" style="padding: 0.5rem 1rem;"><i class="fas fa-download"></i> Download</button>
-                            <button class="btn btn-outline" style="padding: 0.5rem 1rem;">View Details</button>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 0.85rem; margin: 1rem 0; color: #6B7280;">
-                        <span><i class="fas fa-envelope"></i> 287 emails found</span>
-                        <span><i class="fas fa-mobile-alt"></i> 156 phones found</span>
-                        <span><i class="fas fa-link"></i> 45 social profiles</span>
-                    </div>
-                    <div class="task-meta">
-                        <span><i class="fas fa-hashtag"></i> #LB-1232</span>
-                        <span><i class="fas fa-calendar"></i> Completed 1 day ago</span>
-                        <span><i class="fas fa-envelope"></i> Type: Full Extraction</span>
-                        <span><i class="fas fa-gem"></i> Cost: 1 credit</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pagination -->
-            <div style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem;">
-                <button class="btn btn-outline">← Previous</button>
-                <button class="btn btn-primary">1</button>
-                <button class="btn btn-outline">2</button>
-                <button class="btn btn-outline">3</button>
-                <button class="btn btn-outline">...</button>
-                <button class="btn btn-outline">10</button>
-                <button class="btn btn-outline">Next →</button>
-            </div>
+            </section>
         </main>
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    &copy; 2024 <strong>Leadbunker</strong>. All rights reserved.
+                </div>
+            </div>
+        </footer>
     </div>
-
-    <script>
-        function showTab(tab) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
-            alert('Showing ' + tab + ' tasks');
-        }
-    </script>
-
-    <!-- Mobile Overlay -->
-    <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
-
-    <script>
-        // Mobile menu toggle
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('mobileOverlay');
-            
-            if (sidebar && overlay) {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('active');
-                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : 'auto';
-            }
-        }
-        
-        // Close sidebar when clicking a menu item on mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuLinks = document.querySelectorAll('.sidebar-menu a');
-            menuLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        toggleSidebar();
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
-

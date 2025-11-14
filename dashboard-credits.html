@@ -2,391 +2,228 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Credits & Billing - Leadbunker Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body { background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%); }
-        .dashboard-container { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
-        .sidebar { background: rgba(31, 41, 55, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); color: white; padding: 2rem 0; box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); }
-        .sidebar-logo { padding: 0 1.5rem; margin-bottom: 2rem; }
-        .sidebar-menu { list-style: none; }
-        .sidebar-menu li { margin-bottom: 0.5rem; }
-                .sidebar-menu a { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1.25rem; margin: 0 0.75rem; color: rgba(255, 255, 255, 0.75); text-decoration: none; transition: all 0.3s ease; border-radius: 12px; font-size: 0.85rem; font-weight: 600; position: relative; }
-        .sidebar-menu a:hover { background: rgba(99, 102, 241, 0.15); color: white; transform: translateX(5px); }
-        .sidebar-menu a.active { background: rgba(99, 102, 241, 0.25); color: white; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
-        .sidebar-menu a.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 4px; height: 60%; background: linear-gradient(180deg, #6366F1, #A78BFA); border-radius: 0 4px 4px 0; }
-        .main-content { padding: 0.75rem; max-width: 1300px; margin: 0 auto; }
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
-        .page-header h1 { font-size: 0.85rem; margin-bottom: 0.5rem; }
-        .page-header p { color: #6B7280; }
-        .credit-balance-card { background: linear-gradient(135deg, #4F46E5, #8B5CF6); color: white; padding: 1.2rem; border-radius: 16px; margin-bottom: 2rem; }
-        .credit-balance { font-size: 0.85rem; font-weight: 700; margin: 1rem 0; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem; margin-bottom: 2rem; }
-        .price-card { background: white; border: 2px solid #E5E7EB; border-radius: 16px; padding: 0.75rem; transition: all 0.3s; }
-        .price-card:hover { border-color: #4F46E5; box-shadow: 0 10px 30px rgba(79, 70, 229, 0.2); transform: translateY(-5px); }
-        .price-card.featured { border-color: #4F46E5; background: linear-gradient(135deg, #4F46E5, #8B5CF6); color: white; }
-        .price { font-size: 0.95rem; font-weight: 700; margin: 1rem 0; }
-        .price-features { list-style: none; margin: 1.5rem 0; }
-        .price-features li { padding: 0.5rem 0; }
-        .content-card { background: white; padding: 0.75rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); margin-bottom: 0.75rem; }
-        .crypto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
-        .crypto-option { border: 2px solid #E5E7EB; padding: 0.75rem; border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.3s; }
-        .crypto-option:hover { border-color: #4F46E5; background: #F9FAFB; }
-        .crypto-icon { font-size: 0.95rem; margin-bottom: 0.5rem; }
-        
-        /* Mobile Header */
-        .mobile-header {
-            display: none;
-            background: white;
-            padding: 1rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .mobile-menu-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: #1F2937;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        
-        .mobile-user {
-            display: flex;
-            align-items: center;
-        }
-        
-        .sidebar-close {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            position: absolute;
-            right: 1rem;
-            top: 1rem;
-        }
-        
-        .mobile-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .mobile-overlay.active {
-            opacity: 1;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .mobile-header {
-                display: flex !important;
-            }
-            
-            .mobile-overlay {
-                display: block;
-            }
-            
-            .sidebar-close {
-                display: block !important;
-            }
-            
-            .dashboard-container {
-                grid-template-columns: 1fr !important;
-            }
-            
-            .sidebar {
-                position: fixed !important;
-                left: -250px !important;
-                top: 0 !important;
-                height: 100vh !important;
-                width: 250px !important;
-                z-index: 1000 !important;
-                transition: left 0.3s ease !important;
-            }
-            
-            .sidebar.open {
-                left: 0 !important;
-            }
-            
-            
-            .stats-grid,
-            .stats-row {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 0.65rem !important;
-            }
-            
-            .credits-display {
-                display: flex !important;
-                flex-direction: row !important;
-                gap: 0.65rem !important;
-                align-items: center;
-            }
-            
-            .credit-badge {
-                flex: 1;
-                justify-content: center;
-                font-size: 0.75rem !important;
-                padding: 0.5rem 0.75rem !important;
-            }
-            
-            .credits-display .btn {
-                flex-shrink: 0;
-                padding: 0.5rem 0.85rem !important;
-                font-size: 0.75rem !important;
-            }
-            .main-content {
-                padding: 1rem !important;
-                max-width: 100% !important;
-                width: 100% !important;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Credits & Billing</h1>
+        <a href="dashboard-profile.html" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+        </a>
+    </header>
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
     <div class="dashboard-container">
-        <!-- Mobile Header -->
-        <div class="mobile-header">
-            <button class="mobile-menu-btn" onclick="toggleSidebar()">
-                <i class="fas fa-bars"></i>
-            </button>
-            <a href="index.html" class="logo">
-                <div class="logo-icon">LB</div>
-                <span>Leadbunker</span>
-            </a>
-            <div class="mobile-user">
-                <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.85rem;">JD</div>
-            </div>
-        </div>
-        
         <!-- Sidebar -->
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-logo">
-                <a href="index.html" class="logo">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
                     <div class="logo-icon">LB</div>
                     <span>Leadbunker</span>
-                </a>
-                <button class="sidebar-close" onclick="toggleSidebar()">
-                    <i class="fas fa-times"></i>
-                </button>
+                </div>
             </div>
-            <ul class="sidebar-menu">
-                <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
-                <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
-                <li><a href="dashboard-tasks.html"><i class="fas fa-folder-open"></i> My Tasks</a></li>
-                <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
-                <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
-                <li><a href="dashboard-credits.html" class="active"><i class="fas fa-gem"></i> Credits & Billing</a></li>
-                <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
-                <li><a href="dashboard-analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
-                <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
-                <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
-                <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
-                <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
-                <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
-            </ul>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="dashboard-new-extraction.html"><i class="fas fa-rocket"></i> New Extraction</a></li>
+                    <li><a href="dashboard-tasks.html"><i class="fas fa-tasks"></i> My Tasks</a></li>
+                    <li><a href="dashboard-email-lists.html"><i class="fas fa-envelope"></i> Email Lists</a></li>
+                    <li><a href="dashboard-phone-lists.html"><i class="fas fa-phone"></i> Phone Lists</a></li>
+                    <li class="active"><a href="dashboard-credits.html"><i class="fas fa-gem"></i> Credits & Billing</a></li>
+                    <li><a href="dashboard-transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="dashboard-analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="dashboard-api-keys.html"><i class="fas fa-key"></i> API Keys</a></li>
+                    <li><a href="dashboard-team.html"><i class="fas fa-users"></i> Team</a></li>
+                    <li><a href="dashboard-settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="dashboard-support.html"><i class="fas fa-life-ring"></i> Support</a></li>
+                    <li><a href="dashboard-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                    <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Dashboard Header -->
-            <div style="margin-bottom: 1.25rem;">
-                <h1 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.35rem;"><i class="fas fa-gem"></i> Credits & Billing</h1>
-                <p style="color: #6B7280; font-size: 0.85rem; margin: 0;">Manage your credits and purchase more</p>
-            </div>
-            
-            <!-- Top Bar -->
-            <div class="top-bar">
-                <div class="page-header">
-                    <h1 style="font-size: 1rem; font-weight: 700;"><i class="fas fa-gem"></i> Credits & Billing</h1>
-                    <p>Manage your credits and purchase more</p>
+            <header class="main-header">
+                <h1>Credits & Billing</h1>
+                 <div class="header-actions">
+                    <button class="icon-btn"><i class="fas fa-bell"></i></button>
+                    <button class="icon-btn"><i class="fas fa-search"></i></button>
+                    <div class="user-profile">
+                        <div class="user-info">
+                            <span class="welcome-text">Welcome back</span>
+                            <span class="user-name">Yehor Vasishchev</span>
+                        </div>
+                        <img src="https://i.pravatar.cc/40?u=yehor" alt="User Avatar" class="user-avatar">
+                    </div>
                 </div>
-            </div>
+            </header>
 
-            <!-- Current Balance -->
-            <div class="credit-balance-card" style="padding: 1.5rem;">
-                <h3 style="font-size: 0.95rem; font-weight: 600; color: white;">Current Credit Balance</h3>
-                <div class="credit-balance" style="font-size: 2.5rem; font-weight: 700; color: white;">2,450 Credits</div>
-                <p style="opacity: 0.95; color: white; font-size: 0.85rem;">Enough for approximately 2,450 domain extractions</p>
-                <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-                    <span style="background: rgba(255,255,255,0.25); padding: 0.4rem 0.85rem; border-radius: 24px; font-size: 0.8rem; color: white; font-weight: 500;">Credits never expire</span>
-                    <span style="background: rgba(255,255,255,0.25); padding: 0.4rem 0.85rem; border-radius: 24px; font-size: 0.8rem; color: white; font-weight: 500;">Next purchase: 10% bonus</span>
+            <!-- Current Balance Card -->
+            <section class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center;">
+                <div class="balance-header" style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                    <div>
+                        <h2 style="color: white; margin-bottom: 8px;"><i class="fas fa-gem"></i> Current Balance</h2>
+                        <p style="opacity: 0.9; margin: 0;">Your available credits</p>
+                    </div>
+                    <div class="balance-amount">
+                        <div class="balance-value" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <span style="font-size: 48px; font-weight: 700;">2,450</span>
+                            <i class="fas fa-coins" style="font-size: 36px; color: #fbbf24;"></i>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="balance-footer" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
+                    <div style="display: flex; justify-content: center; font-size: 14px;">
+                        <span>≈ $24.50 USD</span>
+                    </div>
+                </div>
+            </section>
 
             <!-- Pricing Plans -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;">Purchase Credits</h2>
-                <div class="pricing-grid" style="gap: 1rem;">
-                    <div class="price-card" style="padding: 1.2rem;">
-                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Standard Pack</h3>
-                        <div class="price" style="font-size: 1.75rem; margin: 0.5rem 0;">$49</div>
-                        <p style="font-size: 0.85rem; margin-bottom: 0.9rem;">1,000 Credits</p>
-                        <ul class="price-features" style="margin: 0.9rem 0; font-size: 0.8rem;">
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> $0.049 per credit</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Email validation</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Phone extraction</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Social profiles</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Never expires</li>
-                        </ul>
-                        <button class="btn btn-primary" style="width: 100%; padding: 0.65rem 1rem; font-size: 0.85rem;">Purchase</button>
-                    </div>
-
-                    <div class="price-card featured" style="padding: 1.5rem;">
-                        <span style="background: #10B981; padding: 0.35rem 0.85rem; border-radius: 24px; font-size: 0.75rem; color: white; font-weight: 600; display: inline-block; margin-bottom: 0.75rem;">Most Popular</span>
-                        <h3 style="font-size: 1.1rem; font-weight: 700; color: white; margin-top: 0; margin-bottom: 0.75rem;">Pro Pack</h3>
-                        <div class="price" style="color: white; font-size: 2rem; margin: 0.75rem 0;">$149</div>
-                        <p style="opacity: 0.95; color: white; font-size: 0.85rem; margin-bottom: 1rem;">5,000 Credits</p>
-                        <ul class="price-features" style="color: white; margin: 1rem 0; font-size: 0.85rem;">
-                            <li style="color: white;"><i class="fas fa-check" style="color: white;"></i> $0.030 per credit</li>
-                            <li style="color: white;"><i class="fas fa-check" style="color: white;"></i> Save $95 vs Standard</li>
-                            <li style="color: white;"><i class="fas fa-check" style="color: white;"></i> Priority support</li>
-                            <li style="color: white;"><i class="fas fa-check" style="color: white;"></i> API access</li>
-                            <li style="color: white;"><i class="fas fa-check" style="color: white;"></i> Never expires</li>
-                        </ul>
-                        <button class="btn btn-primary" style="width: 100%; background: white; color: #4F46E5; margin-top: 0.75rem;">Purchase</button>
-                    </div>
-
-                    <div class="price-card" style="padding: 1.2rem;">
-                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Enterprise Pack</h3>
-                        <div class="price" style="font-size: 1.75rem; margin: 0.5rem 0;">$449</div>
-                        <p style="font-size: 0.85rem; margin-bottom: 0.9rem;">20,000 Credits</p>
-                        <ul class="price-features" style="margin: 0.9rem 0; font-size: 0.8rem;">
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> $0.022 per credit</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Save $531 vs Standard</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Dedicated support</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Custom integrations</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Never expires</li>
-                        </ul>
-                        <button class="btn btn-primary" style="width: 100%; padding: 0.65rem 1rem; font-size: 0.85rem;">Purchase</button>
-                    </div>
-
-                    <div class="price-card" style="padding: 1.2rem;">
-                        <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem;">Custom Plan</h3>
-                        <div class="price" style="font-size: 1.5rem; margin: 0.5rem 0;">Contact Us</div>
-                        <p style="font-size: 0.85rem; margin-bottom: 0.9rem;">50,000+ Credits</p>
-                        <ul class="price-features" style="margin: 0.9rem 0; font-size: 0.8rem;">
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Volume discounts</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Custom pricing</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> White-label options</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> SLA guarantees</li>
-                            <li><i class="fas fa-check" style="font-size: 0.75rem;"></i> Unlimited team</li>
-                        </ul>
-                        <a href="contact.html" class="btn btn-outline" style="width: 100%; display: flex; justify-content: center; padding: 0.65rem 1rem; font-size: 0.85rem;">Contact Sales</a>
-                    </div>
+            <section class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-shopping-cart"></i> Buy Credits</h2>
+                    <p class="card-subtitle">Choose a plan that fits your needs</p>
                 </div>
-            </div>
-
-            <!-- Payment Methods -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;"><i class="fas fa-credit-card"></i> Payment Methods</h2>
-                <p style="color: #6B7280; margin-bottom: 0.75rem;">We accept the following cryptocurrencies for instant credit delivery</p>
                 
-                <div class="crypto-grid">
-                    <div class="crypto-option">
-                        <div class="crypto-icon"><i class="fab fa-bitcoin"></i></div>
-                        <h4>Bitcoin (BTC)</h4>
-                        <small style="color: #6B7280;">Fast & Secure</small>
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <h3>Starter</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">19</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> 500 Credits/month</li>
+                            <li><i class="fas fa-check"></i> Email extraction</li>
+                            <li><i class="fas fa-check"></i> Phone extraction</li>
+                            <li><i class="fas fa-check"></i> Basic support</li>
+                            <li><i class="fas fa-check"></i> CSV export</li>
+                        </ul>
+                        <button class="btn btn-secondary btn-block">Select Plan</button>
                     </div>
-                    <div class="crypto-option">
-                        <div class="crypto-icon"><i class="fab fa-ethereum"></i></div>
-                        <h4>Ethereum (ETH)</h4>
-                        <small style="color: #6B7280;">Smart Contracts</small>
+
+                    <div class="price-card featured">
+                        <div class="popular-badge">Most Popular</div>
+                        <h3>Pro</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">49</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> 2,000 Credits/month</li>
+                            <li><i class="fas fa-check"></i> Email extraction</li>
+                            <li><i class="fas fa-check"></i> Phone extraction</li>
+                            <li><i class="fas fa-check"></i> Priority support</li>
+                            <li><i class="fas fa-check"></i> Advanced filters</li>
+                            <li><i class="fas fa-check"></i> API access</li>
+                            <li><i class="fas fa-check"></i> Team collaboration</li>
+                        </ul>
+                        <button class="btn btn-primary btn-block">Select Plan</button>
                     </div>
-                    <div class="crypto-option">
-                        <div class="crypto-icon"><i class="fas fa-dollar-sign"></i></div>
-                        <h4>USDT</h4>
-                        <small style="color: #6B7280;">Stablecoin</small>
-                    </div>
-                    <div class="crypto-option">
-                        <div class="crypto-icon"><i class="fas fa-dollar-sign"></i></div>
-                        <h4>USDC</h4>
-                        <small style="color: #6B7280;">Stablecoin</small>
-                    </div>
-                    <div class="crypto-option">
-                        <div class="crypto-icon"><i class="fas fa-link"></i></div>
-                        <h4>BNB</h4>
-                        <small style="color: #6B7280;">Binance Chain</small>
-                    </div>
-                    <div class="crypto-option">
-                        <div class="crypto-icon"><i class="fas fa-coins"></i></div>
-                        <h4>More</h4>
-                        <small style="color: #6B7280;">10+ Cryptos</small>
+
+                    <div class="price-card">
+                        <h3>Enterprise</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">199</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> 10,000 Credits/month</li>
+                            <li><i class="fas fa-check"></i> Everything in Pro</li>
+                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                            <li><i class="fas fa-check"></i> Custom integrations</li>
+                            <li><i class="fas fa-check"></i> SLA guarantee</li>
+                            <li><i class="fas fa-check"></i> White-label option</li>
+                        </ul>
+                        <button class="btn btn-secondary btn-block">Contact Sales</button>
                     </div>
                 </div>
+            </section>
 
-                <div style="background: #DBEAFE; padding: 0.75rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid #3B82F6;">
-                    <p style="margin: 0; color: #1E40AF; font-weight: 600;">
-                        <i class="fas fa-lightbulb"></i> Credits are added instantly after payment confirmation (usually within 5-15 minutes)
-                    </p>
+            <!-- One-Time Credit Packs -->
+            <section class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-bolt"></i> One-Time Credit Packs</h3>
+                    <p class="card-subtitle">No subscription required</p>
                 </div>
-            </div>
-
-            <!-- Credit Usage -->
-            <div class="content-card">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="margin-bottom: 0.75rem;"><i class="fas fa-chart-bar"></i> Credit Usage Breakdown</h2>
-                <p style="color: #6B7280; margin-bottom: 0.75rem;">Understand how credits are consumed</p>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.85rem;">
-                    <div style="border: 2px solid #E5E7EB; padding: 0.75rem; border-radius: 12px;">
-                        <h4><i class="fas fa-globe"></i> Domain Scraping</h4>
-                        <div style="font-size: 0.85rem; font-weight: 700; color: #4F46E5; margin: 0.5rem 0;">1 Credit</div>
-                        <p style="color: #6B7280; margin: 0;">Per domain extracted with full data</p>
+                <div class="credit-packs-grid">
+                    <div class="credit-pack">
+                        <div class="pack-credits">100 Credits</div>
+                        <div class="pack-price">$15</div>
+                        <button class="btn btn-sm btn-primary">Buy Now</button>
                     </div>
-                    <div style="border: 2px solid #E5E7EB; padding: 0.75rem; border-radius: 12px;">
-                        <h4><i class="fas fa-envelope"></i> Email Verification</h4>
-                        <div style="font-size: 0.85rem; font-weight: 700; color: #4F46E5; margin: 0.5rem 0;">0.1 Credit</div>
-                        <p style="color: #6B7280; margin: 0;">Per email verified</p>
+                    <div class="credit-pack">
+                        <div class="pack-credits">500 Credits</div>
+                        <div class="pack-price">$65</div>
+                        <div class="pack-savings">Save $10</div>
+                        <button class="btn btn-sm btn-primary">Buy Now</button>
                     </div>
-                    <div style="border: 2px solid #E5E7EB; padding: 0.75rem; border-radius: 12px;">
-                        <h4><i class="fas fa-mobile-alt"></i> Phone Validation</h4>
-                        <div style="font-size: 0.85rem; font-weight: 700; color: #4F46E5; margin: 0.5rem 0;">0.2 Credit</div>
-                        <p style="color: #6B7280; margin: 0;">Per phone number validated</p>
+                    <div class="credit-pack popular">
+                        <div class="pack-badge">Best Value</div>
+                        <div class="pack-credits">1,000 Credits</div>
+                        <div class="pack-price">$120</div>
+                        <div class="pack-savings">Save $30</div>
+                        <button class="btn btn-sm btn-primary">Buy Now</button>
                     </div>
-                    <div style="border: 2px solid #E5E7EB; padding: 0.75rem; border-radius: 12px;">
-                        <h4><i class="fas fa-search"></i> Social Enrichment</h4>
-                        <div style="font-size: 0.85rem; font-weight: 700; color: #4F46E5; margin: 0.5rem 0;">0.5 Credit</div>
-                        <p style="color: #6B7280; margin: 0;">Per profile enriched</p>
+                    <div class="credit-pack">
+                        <div class="pack-credits">5,000 Credits</div>
+                        <div class="pack-price">$500</div>
+                        <div class="pack-savings">Save $250</div>
+                        <button class="btn btn-sm btn-primary">Buy Now</button>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- Referral Program -->
-            <div class="content-card" style="background: linear-gradient(135deg, #10B981, #059669); color: white;">
-                <h2 style="font-size: 1.15rem; font-weight: 700;" style="color: white;"><i class="fas fa-gift"></i> Refer & Earn Credits</h2>
-                <p style="opacity: 0.9; margin-bottom: 0.75rem;">Invite friends and get 100 bonus credits for each paid signup!</p>
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    <input type="text" value="https://leadbunker.com/ref/johndoe123" readonly style="flex: 1; padding: 0.6rem; border-radius: 8px; border: none;">
-                    <button class="btn btn-primary" style="background: white; color: #10B981;">Copy Link</button>
+            <!-- Last Used Payment -->
+            <section class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-history"></i> Last Used Payment Method</h3>
                 </div>
-                <p style="margin-top: 1rem; opacity: 0.9;">You've earned <strong>300 credits</strong> from 3 referrals so far!</p>
-            </div>
+                
+                <div class="payment-methods-list">
+                    <div class="payment-method-item">
+                        <div class="payment-icon">
+                            <i class="fab fa-bitcoin"></i>
+                        </div>
+                        <div class="payment-details">
+                            <strong>Bitcoin (BTC)</strong>
+                            <span>Last used on Nov 10, 2024</span>
+                        </div>
+                        <span class="badge badge-success">Last Used</span>
+                    </div>
+                </div>
+            </section>
         </main>
-    </div>
 
-    <script>
-        document.querySelectorAll('.price-card .btn').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                if (this.textContent === 'Purchase') {
-                    alert('Redirecting to secure crypto payment gateway...');
-                }
-            });
-        });
-    </script>
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <div class="footer-copyright">
+                    &copy; 2024 <strong>Leadbunker</strong>. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="js/dashboard.js"></script>
 </body>
 </html>
-
