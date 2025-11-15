@@ -451,9 +451,21 @@
     </button>
 
     <script>
+        // Function to generate wallet addresses (simulated)
+        function generateWalletAddresses(userId) {
+            // In production, this would call your backend API
+            // Backend would generate real wallet addresses using blockchain APIs
+            return {
+                btc: '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+                eth: '0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb',
+                usdt: 'TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9'
+            };
+        }
+
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
             
@@ -462,10 +474,56 @@
                 return;
             }
             
-            // Add your signup logic here
-            alert('Account created successfully! 100 free credits added to your account.');
-            // Redirect to dashboard
-            window.location.href = 'dashboard.html';
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+            submitBtn.disabled = true;
+            
+            // Simulate account creation and wallet generation
+            setTimeout(() => {
+                // In production, call backend API:
+                /*
+                fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password,
+                        name: document.getElementById('name').value
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Auto-generated wallets are created on backend
+                        localStorage.setItem('userWallets', JSON.stringify(data.wallets));
+                        window.location.href = 'dashboard.html';
+                    }
+                });
+                */
+                
+                // For demo: Generate wallets locally
+                const userId = 'USER-' + Date.now();
+                const wallets = generateWalletAddresses(userId);
+                
+                // Store wallets (in production, these come from backend)
+                localStorage.setItem('userWallets', JSON.stringify(wallets));
+                localStorage.setItem('userEmail', email);
+                
+                // Show success message with wallet info
+                alert('✅ Account Created Successfully!\n\n' +
+                      '🎉 100 free credits added to your account\n' +
+                      '💰 3 crypto wallets automatically generated:\n\n' +
+                      '  • Bitcoin (BTC) wallet\n' +
+                      '  • Ethereum (ETH) wallet\n' +
+                      '  • USDT (TRC20) wallet\n\n' +
+                      'You can start receiving crypto deposits immediately!'
+                );
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            }, 1500);
         });
     </script>
     

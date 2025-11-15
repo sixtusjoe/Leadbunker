@@ -101,6 +101,100 @@
                 </div>
             </section>
 
+            <!-- Crypto Wallets Section -->
+            <section class="card" style="margin-bottom: 2rem;">
+                <div class="card-header">
+                    <h3><i class="fas fa-wallet"></i> My Crypto Wallets</h3>
+                    <span style="font-size: 12px; color: #6B7280;">Auto-generated for deposits</span>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px;">
+                    <!-- Bitcoin Wallet -->
+                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(247,147,26,0.1) 0%, rgba(235,137,19,0.1) 100%); border-radius: 12px; border-left: 4px solid #f7931a;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <i class="fab fa-bitcoin" style="font-size: 32px; color: #f7931a;"></i>
+                            <div>
+                                <div style="font-size: 12px; color: #6B7280;">Bitcoin (BTC)</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #1F2937;">0.00 BTC</div>
+                                <div style="font-size: 13px; color: #6B7280;">≈ $0.00</div>
+                            </div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+                            <div style="font-size: 11px; color: #6B7280; margin-bottom: 6px;">Deposit Address</div>
+                            <div style="font-size: 11px; font-family: monospace; color: #1F2937; word-break: break-all;" id="btcAddress">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="copyAddress('btc')" style="flex: 1; padding: 8px; background: #f7931a; color: white; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                            <button onclick="showQR('btc')" style="flex: 1; padding: 8px; background: white; color: #f7931a; border: 2px solid #f7931a; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                                <i class="fas fa-qrcode"></i> QR Code
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Ethereum Wallet -->
+                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(98,126,234,0.1) 0%, rgba(82,106,195,0.1) 100%); border-radius: 12px; border-left: 4px solid #627eea;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <i class="fab fa-ethereum" style="font-size: 32px; color: #627eea;"></i>
+                            <div>
+                                <div style="font-size: 12px; color: #6B7280;">Ethereum (ETH)</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #1F2937;">0.00 ETH</div>
+                                <div style="font-size: 13px; color: #6B7280;">≈ $0.00</div>
+                            </div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+                            <div style="font-size: 11px; color: #6B7280; margin-bottom: 6px;">Deposit Address</div>
+                            <div style="font-size: 11px; font-family: monospace; color: #1F2937; word-break: break-all;" id="ethAddress">0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb</div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="copyAddress('eth')" style="flex: 1; padding: 8px; background: #627eea; color: white; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                            <button onclick="showQR('eth')" style="flex: 1; padding: 8px; background: white; color: #627eea; border: 2px solid #627eea; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                                <i class="fas fa-qrcode"></i> QR Code
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- USDT Wallet -->
+                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(38,161,123,0.1) 0%, rgba(30,128,98,0.1) 100%); border-radius: 12px; border-left: 4px solid #26a17b;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <div style="width: 44px; height: 44px; background: #26a17b; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: white; font-weight: 700; font-size: 18px;">₮</span>
+                            </div>
+                            <div>
+                                <div style="font-size: 12px; color: #6B7280;">USDT (TRC20)</div>
+                                <div style="font-size: 20px; font-weight: 700; color: #1F2937;">0.00 USDT</div>
+                                <div style="font-size: 13px; color: #6B7280;">≈ $0.00</div>
+                            </div>
+                        </div>
+                        <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 12px;">
+                            <div style="font-size: 11px; color: #6B7280; margin-bottom: 6px;">Deposit Address</div>
+                            <div style="font-size: 11px; font-family: monospace; color: #1F2937; word-break: break-all;" id="usdtAddress">TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9</div>
+                        </div>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="copyAddress('usdt')" style="flex: 1; padding: 8px; background: #26a17b; color: white; border: none; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                            <button onclick="showQR('usdt')" style="flex: 1; padding: 8px; background: white; color: #26a17b; border: 2px solid #26a17b; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                                <i class="fas fa-qrcode"></i> QR Code
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Box -->
+                <div style="margin: 0 20px 20px 20px; padding: 16px; background: #EFF6FF; border-left: 4px solid #3B82F6; border-radius: 8px;">
+                    <div style="display: flex; align-items: start; gap: 12px;">
+                        <i class="fas fa-info-circle" style="color: #3B82F6; margin-top: 2px;"></i>
+                        <div style="font-size: 12px; color: #1E40AF; line-height: 1.6;">
+                            <strong>How to deposit:</strong> Send crypto to your wallet address above. Deposits are automatically credited to your account after blockchain confirmation. Always double-check the address before sending.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Mobile Credit Balance (Hidden on Desktop) -->
             <section class="mobile-only credit-card-section card">
                 <h4>Available Credits</h4>
@@ -321,6 +415,44 @@
             </div>
         </footer>
     </div>
+    <script>
+        // Wallet Functions
+        function copyAddress(type) {
+            let address = '';
+            if (type === 'btc') {
+                address = document.getElementById('btcAddress').textContent;
+            } else if (type === 'eth') {
+                address = document.getElementById('ethAddress').textContent;
+            } else if (type === 'usdt') {
+                address = document.getElementById('usdtAddress').textContent;
+            }
+            
+            navigator.clipboard.writeText(address).then(() => {
+                alert('✅ Address copied to clipboard!\n\n' + address);
+            }).catch(err => {
+                alert('Failed to copy address');
+            });
+        }
+
+        function showQR(type) {
+            let address = '';
+            let cryptoName = '';
+            
+            if (type === 'btc') {
+                address = document.getElementById('btcAddress').textContent;
+                cryptoName = 'Bitcoin (BTC)';
+            } else if (type === 'eth') {
+                address = document.getElementById('ethAddress').textContent;
+                cryptoName = 'Ethereum (ETH)';
+            } else if (type === 'usdt') {
+                address = document.getElementById('usdtAddress').textContent;
+                cryptoName = 'USDT (TRC20)';
+            }
+            
+            // In production, this would show a modal with QR code
+            alert(`QR Code for ${cryptoName}\n\nAddress: ${address}\n\nIn production, this would display a scannable QR code.`);
+        }
+    </script>
     <script src="js/dashboard.js"></script>
 </body>
 </html>

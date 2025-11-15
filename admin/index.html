@@ -69,7 +69,187 @@
                     <p style="color: var(--text-light); margin: 0; font-size: 14px;">Welcome back, Administrator</p>
                 </div>
                 <div class="header-actions">
-                    <button class="icon-btn"><i class="fas fa-bell"></i></button>
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-bell" id="notificationBell">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-badge">8</span>
+                        </button>
+                        
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" id="notificationDropdown">
+                            <div class="notification-header">
+                                <h3>Notifications</h3>
+                                <div class="notification-actions">
+                                    <button class="mark-all-read" onclick="markAllAsRead()">
+                                        <i class="fas fa-check-double"></i> Mark all read
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Notification Tabs -->
+                            <div class="notification-tabs">
+                                <button class="tab-btn active" data-tab="all" onclick="switchTab('all')">
+                                    All <span class="tab-count">8</span>
+                                </button>
+                                <button class="tab-btn" data-tab="urgent" onclick="switchTab('urgent')">
+                                    Urgent <span class="tab-count urgent">3</span>
+                                </button>
+                                <button class="tab-btn" data-tab="unread" onclick="switchTab('unread')">
+                                    Unread <span class="tab-count">8</span>
+                                </button>
+                            </div>
+                            
+                            <!-- Notifications List -->
+                            <div class="notifications-list" id="notificationsList">
+                                
+                                <!-- High Priority Notifications -->
+                                <div class="notification-item unread urgent" data-priority="urgent">
+                                    <div class="notification-icon urgent">
+                                        <i class="fab fa-bitcoin"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">3 Crypto Payments Pending Verification</div>
+                                        <div class="notification-desc">Bitcoin and USDT transactions awaiting confirmation</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 5 mins ago</span>
+                                            <a href="crypto-payments.html" class="notification-link">Review Now →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread urgent" data-priority="urgent">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Storage Capacity at 92%</div>
+                                        <div class="notification-desc">Consider upgrading storage or cleaning old data</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 15 mins ago</span>
+                                            <a href="settings.html" class="notification-link">Manage Storage →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread urgent" data-priority="urgent">
+                                    <div class="notification-icon urgent">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">12 Support Tickets Need Response</div>
+                                        <div class="notification-desc">4 urgent tickets over 24 hours old</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 1 hour ago</span>
+                                            <a href="support.html" class="notification-link">View Tickets →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Medium Priority Notifications -->
+                                <div class="notification-item unread" data-priority="medium">
+                                    <div class="notification-icon medium">
+                                        <i class="fas fa-spider"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">2 Scraping Jobs Failed</div>
+                                        <div class="notification-desc">Email extraction jobs encountered errors</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 2 hours ago</span>
+                                            <a href="scraping.html" class="notification-link">Resolve Issues →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="medium">
+                                    <div class="notification-icon medium">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">8 New User Registrations</div>
+                                        <div class="notification-desc">3 Pro plans, 4 Starter plans, 1 Enterprise</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 3 hours ago</span>
+                                            <a href="users.html" class="notification-link">View Users →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="medium">
+                                    <div class="notification-icon medium">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Transaction Failed</div>
+                                        <div class="notification-desc">Payment of $49.99 from david@tech.com declined</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 4 hours ago</span>
+                                            <a href="transactions.html" class="notification-link">View Details →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <!-- Low Priority Notifications -->
+                                <div class="notification-item unread" data-priority="low">
+                                    <div class="notification-icon low">
+                                        <i class="fas fa-ticket-alt"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Coupon "SUMMER50" Expiring Soon</div>
+                                        <div class="notification-desc">Will expire in 2 days - 47 uses remaining</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 5 hours ago</span>
+                                            <a href="coupons.html" class="notification-link">Manage Coupons →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="notification-item unread" data-priority="low">
+                                    <div class="notification-icon low">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">Daily Report Generated</div>
+                                        <div class="notification-desc">Revenue up 23%, 2,847 total users</div>
+                                        <div class="notification-meta">
+                                            <span class="notification-time"><i class="fas fa-clock"></i> 6 hours ago</span>
+                                            <a href="analytics.html" class="notification-link">View Report →</a>
+                                        </div>
+                                    </div>
+                                    <button class="notification-mark-read" onclick="markAsRead(this)" title="Mark as read">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Notification Footer -->
+                            <div class="notification-footer">
+                                <a href="#" class="view-all-notifications">View All Notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="user-profile">
                         <div class="user-info">
                             <span class="welcome-text">Admin</span>
@@ -386,6 +566,127 @@
                 sidebarOverlay.classList.remove('active');
             });
         }
+
+        // Notification System
+        const notificationBell = document.getElementById('notificationBell');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+        let currentTab = 'all';
+
+        // Toggle notification dropdown
+        if (notificationBell) {
+            notificationBell.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('active');
+            });
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!notificationDropdown.contains(e.target) && !notificationBell.contains(e.target)) {
+                notificationDropdown.classList.remove('active');
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside
+        notificationDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Switch notification tabs
+        function switchTab(tab) {
+            currentTab = tab;
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const notifications = document.querySelectorAll('.notification-item');
+            
+            // Update active tab button
+            tabBtns.forEach(btn => {
+                if (btn.dataset.tab === tab) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Filter notifications
+            notifications.forEach(notification => {
+                if (tab === 'all') {
+                    notification.style.display = 'flex';
+                } else if (tab === 'urgent') {
+                    notification.style.display = notification.dataset.priority === 'urgent' ? 'flex' : 'none';
+                } else if (tab === 'unread') {
+                    notification.style.display = notification.classList.contains('unread') ? 'flex' : 'none';
+                }
+            });
+        }
+
+        // Mark single notification as read
+        function markAsRead(button) {
+            const notificationItem = button.closest('.notification-item');
+            notificationItem.classList.remove('unread');
+            notificationItem.classList.add('read');
+            button.style.display = 'none';
+            
+            // Update badge count
+            updateNotificationBadge();
+        }
+
+        // Mark all notifications as read
+        function markAllAsRead() {
+            const unreadNotifications = document.querySelectorAll('.notification-item.unread');
+            unreadNotifications.forEach(notification => {
+                notification.classList.remove('unread');
+                notification.classList.add('read');
+                const markReadBtn = notification.querySelector('.notification-mark-read');
+                if (markReadBtn) {
+                    markReadBtn.style.display = 'none';
+                }
+            });
+            
+            // Update badge count
+            updateNotificationBadge();
+            
+            // Show success message
+            alert('All notifications marked as read');
+        }
+
+        // Update notification badge count
+        function updateNotificationBadge() {
+            const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+            const badge = document.querySelector('.notification-badge');
+            const unreadTabCount = document.querySelector('.tab-btn[data-tab="unread"] .tab-count');
+            
+            if (unreadCount > 0) {
+                badge.textContent = unreadCount;
+                badge.style.display = 'flex';
+                if (unreadTabCount) {
+                    unreadTabCount.textContent = unreadCount;
+                }
+            } else {
+                badge.style.display = 'none';
+                if (unreadTabCount) {
+                    unreadTabCount.textContent = '0';
+                }
+            }
+            
+            // Update urgent tab count
+            const urgentCount = document.querySelectorAll('.notification-item.urgent').length;
+            const urgentTabCount = document.querySelector('.tab-btn[data-tab="urgent"] .tab-count');
+            if (urgentTabCount) {
+                urgentTabCount.textContent = urgentCount;
+            }
+            
+            // Update all tab count
+            const allCount = document.querySelectorAll('.notification-item').length;
+            const allTabCount = document.querySelector('.tab-btn[data-tab="all"] .tab-count');
+            if (allTabCount) {
+                allTabCount.textContent = allCount;
+            }
+        }
+
+        // Initialize notification system
+        document.addEventListener('DOMContentLoaded', () => {
+            updateNotificationBadge();
+        });
     </script>
 </body>
 </html>

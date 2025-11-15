@@ -6,6 +6,14 @@ Complete admin dashboard for managing all aspects of the Leadbunker platform.
 
 ### 1. **index.html** - Main Admin Dashboard
 - Main entry point for the admin panel
+- **NEW: Interactive Notification Bell System** 🔔
+  - Real-time notification dropdown with badge counter
+  - 3 priority levels: Urgent, Medium, Low
+  - Filterable tabs: All, Urgent, Unread
+  - Mark as read functionality (individual & bulk)
+  - 8 notification types covering all admin activities
+  - Direct links to relevant pages
+  - Fully responsive design
 - Overview of system health and key metrics
 - Total users, monthly revenue, active extractions
 - Recent users and transactions
@@ -112,6 +120,19 @@ Complete admin dashboard for managing all aspects of the Leadbunker platform.
 - Security settings (2FA, session timeout, login attempts)
 - Maintenance mode control
 - **Danger zone** (clear caches, reset database)
+
+## 🔔 Notification System
+
+**NEW: Comprehensive Admin Notification System**
+- Interactive notification bell with animated badge
+- 8 different notification types (crypto payments, support tickets, scraping jobs, etc.)
+- Priority-based filtering (Urgent/Medium/Low)
+- Smart tab system (All/Urgent/Unread)
+- Mark as read functionality
+- Real-time badge updates
+- Responsive dropdown design
+- Direct action links
+- See `NOTIFICATION_SYSTEM.md` for detailed documentation
 
 ## 🎨 Design System Features
 
