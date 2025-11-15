@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Admin - Leadbunker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Settings</h1>
+        <a href="#" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+        </a>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Admin Panel</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="coupons.html"><i class="fas fa-ticket-alt"></i> Coupons</a></li>
+                    <li><a href="support.html"><i class="fas fa-headset"></i> Support <span class="badge">12</span></a></li>
+                    <li><a href="scraping.html"><i class="fas fa-spider"></i> Scraping Jobs</a></li>
+                    <li><a href="email-validator.html"><i class="fas fa-envelope-open-text"></i> Email Validator</a></li>
+                    <li><a href="wallets.html"><i class="fas fa-wallet"></i> Payment Wallets</a></li>
+                    <li><a href="crypto-payments.html"><i class="fab fa-bitcoin"></i> Crypto Payments</a></li>
+                    <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li class="active"><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="../dashboard.html"><i class="fas fa-arrow-left"></i> User Dashboard</a></li>
+                    <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="main-header">
+                <div>
+                    <h1>System Settings</h1>
+                    <p style="color: var(--text-light); margin: 0; font-size: 14px;">Configure system-wide settings and preferences</p>
+                </div>
+            </div>
+
+            <!-- General Settings -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-cog"></i> General Settings</h3>
+                </div>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-building"></i> Company Name</label>
+                        <input type="text" class="form-input" value="Leadbunker">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Support Email</label>
+                        <input type="email" class="form-input" value="support@leadbunker.com">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Support Phone</label>
+                        <input type="tel" class="form-input" value="+1 (555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-globe"></i> Website URL</label>
+                        <input type="url" class="form-input" value="https://leadbunker.com">
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save General Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- Email Settings -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-envelope"></i> Email Settings</h3>
+                </div>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-server"></i> SMTP Server</label>
+                        <input type="text" class="form-input" value="smtp.leadbunker.com">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-network-wired"></i> SMTP Port</label>
+                            <input type="number" class="form-input" value="587">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-lock"></i> Encryption</label>
+                            <select class="form-select">
+                                <option>None</option>
+                                <option selected>TLS</option>
+                                <option>SSL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> SMTP Username</label>
+                            <input type="text" class="form-input" value="noreply@leadbunker.com">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-key"></i> SMTP Password</label>
+                            <input type="password" class="form-input" value="••••••••••">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Email Settings
+                    </button>
+                    <button class="btn btn-secondary" style="margin-left: 12px;">
+                        <i class="fas fa-paper-plane"></i> Send Test Email
+                    </button>
+                </div>
+            </div>
+
+            <!-- Payment Settings -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-credit-card"></i> Payment Gateway Settings</h3>
+                </div>
+                <div class="settings-form">
+                    <h4 style="margin: 0 0 16px 0;">Stripe Configuration</h4>
+                    <div class="form-group">
+                        <label><i class="fas fa-key"></i> Stripe Publishable Key</label>
+                        <input type="text" class="form-input" value="pk_live_••••••••••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-key"></i> Stripe Secret Key</label>
+                        <input type="password" class="form-input" value="sk_live_••••••••••••••••">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-webhook"></i> Webhook Secret</label>
+                        <input type="password" class="form-input" value="whsec_••••••••••••••••">
+                    </div>
+                    <hr style="margin: 24px 0; border: none; border-top: 1px solid var(--border-color);">
+                    <h4 style="margin: 0 0 16px 0;">Crypto Payment Settings</h4>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Enable Bitcoin (BTC) payments</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Enable Ethereum (ETH) payments</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Enable USDT payments</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Payment Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- System Limits -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-sliders-h"></i> System Limits & Quotas</h3>
+                </div>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> Max Users per Plan (Free)</label>
+                        <input type="number" class="form-input" value="10000">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-tasks"></i> Max Concurrent Extractions</label>
+                        <input type="number" class="form-input" value="50">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Extraction Timeout (seconds)</label>
+                        <input type="number" class="form-input" value="300">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-database"></i> Max File Upload Size (MB)</label>
+                        <input type="number" class="form-input" value="10">
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save System Limits
+                    </button>
+                </div>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-shield-alt"></i> Security Settings</h3>
+                </div>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Require email verification for new accounts</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Enable two-factor authentication</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Log all admin actions</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Session Timeout (minutes)</label>
+                        <input type="number" class="form-input" value="30">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-ban"></i> Max Login Attempts</label>
+                        <input type="number" class="form-input" value="5">
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Security Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- Maintenance Mode -->
+            <div class="card" style="border: 2px solid #f59e0b;">
+                <div class="card-header" style="background: #fef3c7; padding: 16px; margin: -20px -20px 20px -20px; border-radius: 16px 16px 0 0;">
+                    <h3 style="margin: 0; color: #92400e;">
+                        <i class="fas fa-tools"></i> Maintenance Mode
+                    </h3>
+                </div>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" style="width: 18px; height: 18px;">
+                            <span><strong>Enable Maintenance Mode</strong></span>
+                        </label>
+                        <div style="font-size: 13px; color: var(--text-light); margin-top: 8px;">
+                            When enabled, users will see a maintenance page and won't be able to access the site
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-comment"></i> Maintenance Message</label>
+                        <textarea class="form-input" rows="3" placeholder="We're currently performing scheduled maintenance..."></textarea>
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Update Maintenance Settings
+                    </button>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="card danger-zone" style="border: 2px solid #ef4444;">
+                <div class="card-header" style="background: #fee2e2; padding: 16px; margin: -20px -20px 20px -20px; border-radius: 16px 16px 0 0;">
+                    <h3 style="margin: 0; color: #991b1b;">
+                        <i class="fas fa-exclamation-triangle"></i> Danger Zone
+                    </h3>
+                </div>
+                <div class="danger-actions">
+                    <div>
+                        <strong style="color: #991b1b;">Clear All Caches</strong>
+                        <p style="color: #dc2626; margin: 8px 0 0 0;">This will clear all system caches and may temporarily slow down the system</p>
+                    </div>
+                    <button class="btn" style="background: #f59e0b; color: white;">
+                        <i class="fas fa-trash"></i> Clear Caches
+                    </button>
+                </div>
+                <hr style="margin: 20px 0; border: none; border-top: 1px solid #fecaca;">
+                <div class="danger-actions">
+                    <div>
+                        <strong style="color: #991b1b;">Reset Database</strong>
+                        <p style="color: #dc2626; margin: 8px 0 0 0;">⚠️ WARNING: This will delete ALL data and cannot be undone!</p>
+                    </div>
+                    <button class="btn" style="background: #ef4444; color: white;" onclick="alert('This action requires additional confirmation')">
+                        <i class="fas fa-database"></i> Reset Database
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            });
+        }
+
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        }
+    </script>
+</body>
+</html>
+

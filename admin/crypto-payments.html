@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Payments - Admin - Leadbunker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Crypto Payments</h1>
+        <a href="#" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+        </a>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Admin Panel</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="coupons.html"><i class="fas fa-ticket-alt"></i> Coupons</a></li>
+                    <li><a href="support.html"><i class="fas fa-headset"></i> Support <span class="badge">12</span></a></li>
+                    <li><a href="scraping.html"><i class="fas fa-spider"></i> Scraping Jobs</a></li>
+                    <li><a href="email-validator.html"><i class="fas fa-envelope-open-text"></i> Email Validator</a></li>
+                    <li><a href="wallets.html"><i class="fas fa-wallet"></i> Payment Wallets</a></li>
+                    <li class="active"><a href="crypto-payments.html"><i class="fab fa-bitcoin"></i> Crypto Payments</a></li>
+                    <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="../dashboard.html"><i class="fas fa-arrow-left"></i> User Dashboard</a></li>
+                    <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="main-header">
+                <div>
+                    <h1>Crypto Payment Resolution</h1>
+                    <p style="color: var(--text-light); margin: 0; font-size: 14px;">Verify and resolve crypto payment issues</p>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Pending Verification</div>
+                        <div class="card-change negative"><i class="fas fa-exclamation-circle"></i> Urgent</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">$12,840</div>
+                        <div class="stat-label">Pending Amount (USD)</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">847</div>
+                        <div class="stat-label">Resolved (This Month)</div>
+                        <div class="card-change positive"><i class="fas fa-arrow-up"></i> +18% vs last month</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pending Payments - HIGH PRIORITY -->
+            <div class="card" style="border: 2px solid #ef4444;">
+                <div class="card-header" style="background: #fee2e2; padding: 16px; margin: -20px -20px 20px -20px; border-radius: 16px 16px 0 0;">
+                    <h3 style="margin: 0; color: #991b1b;">
+                        <i class="fas fa-exclamation-triangle"></i> Pending Verification (3) - URGENT
+                    </h3>
+                </div>
+
+                <!-- Payment 1 -->
+                <div style="padding: 20px; background: linear-gradient(135deg, rgba(239,68,68,0.05) 0%, rgba(220,38,38,0.05) 100%); border-left: 4px solid #ef4444; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div style="flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                <span class="badge badge-danger">URGENT</span>
+                                <span class="badge badge-warning">Pending</span>
+                                <code style="font-size: 12px;">#CRYPTO-1847</code>
+                                <span style="font-size: 12px; color: var(--text-light);">3 days old</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+                                <div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">User</div>
+                                    <strong>David Lee</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">david@tech.com</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Amount</div>
+                                    <strong style="color: #f7931a;">0.05 BTC</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">≈ $2,270 USD</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Plan</div>
+                                    <strong>Pro Plan (Monthly)</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">$49.99/mo</div>
+                                </div>
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 12px;">
+                                <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Transaction Hash</div>
+                                <code style="font-size: 11px; word-break: break-all;">0x7a8f3e2b1c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f</code>
+                                <button class="btn-sm btn-secondary" style="margin-left: 8px;">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                                <a href="#" class="btn-sm btn-secondary" style="margin-left: 8px;" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> View on Blockchain
+                                </a>
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 12px;">
+                                <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Payment Wallet Address</div>
+                                <code style="font-size: 11px; word-break: break-all;">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh7k8</code>
+                                <button class="btn-sm btn-secondary" style="margin-left: 8px;">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <div style="padding: 12px; background: #dbeafe; border-radius: 8px;">
+                                <div style="display: flex; gap: 16px; font-size: 14px;">
+                                    <div>
+                                        <div style="font-size: 12px; color: #1e40af; margin-bottom: 4px;">Confirmations</div>
+                                        <strong style="color: #1e3a8a;">6 / 3 required</strong>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 12px; color: #1e40af; margin-bottom: 4px;">Status</div>
+                                        <strong style="color: #10b981;">✓ Confirmed on Blockchain</strong>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 12px; color: #1e40af; margin-bottom: 4px;">Received</div>
+                                        <strong style="color: #1e3a8a;">3 days ago</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-primary" onclick="approvePayment('1847')">
+                            <i class="fas fa-check"></i> Approve & Credit Account
+                        </button>
+                        <button class="btn btn-secondary" onclick="viewPaymentDetails('1847')">
+                            <i class="fas fa-eye"></i> View Full Details
+                        </button>
+                        <button class="btn" style="background: #ef4444; color: white;" onclick="rejectPayment('1847')">
+                            <i class="fas fa-times"></i> Reject Payment
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Payment 2 -->
+                <div style="padding: 20px; background: linear-gradient(135deg, rgba(239,68,68,0.05) 0%, rgba(220,38,38,0.05) 100%); border-left: 4px solid #ef4444; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div style="flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                <span class="badge badge-danger">URGENT</span>
+                                <span class="badge badge-warning">Pending</span>
+                                <code style="font-size: 12px;">#CRYPTO-1846</code>
+                                <span style="font-size: 12px; color: var(--text-light);">2 days old</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+                                <div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">User</div>
+                                    <strong>Sarah Smith</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">sarah@company.com</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Amount</div>
+                                    <strong style="color: #627eea;">1.5 ETH</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">≈ $3,435 USD</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Plan</div>
+                                    <strong>Credits Pack</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">1000 credits</div>
+                                </div>
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 12px;">
+                                <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Transaction Hash</div>
+                                <code style="font-size: 11px; word-break: break-all;">0x2b9c4a7e8f1d3c5b6a9e0f2d4c7b8a1e3f5d9c2b4a7e8f1d3c5b6a9e0f2d4c7b</code>
+                                <button class="btn-sm btn-secondary" style="margin-left: 8px;">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                                <a href="#" class="btn-sm btn-secondary" style="margin-left: 8px;" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> View on Blockchain
+                                </a>
+                            </div>
+                            <div style="padding: 12px; background: #dbeafe; border-radius: 8px;">
+                                <div style="display: flex; gap: 16px; font-size: 14px;">
+                                    <div>
+                                        <div style="font-size: 12px; color: #1e40af; margin-bottom: 4px;">Confirmations</div>
+                                        <strong style="color: #1e3a8a;">12 / 12 required</strong>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 12px; color: #1e40af; margin-bottom: 4px;">Status</div>
+                                        <strong style="color: #10b981;">✓ Confirmed on Blockchain</strong>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 12px; color: #1e40af; margin-bottom: 4px;">Received</div>
+                                        <strong style="color: #1e3a8a;">2 days ago</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-primary" onclick="approvePayment('1846')">
+                            <i class="fas fa-check"></i> Approve & Credit Account
+                        </button>
+                        <button class="btn btn-secondary" onclick="viewPaymentDetails('1846')">
+                            <i class="fas fa-eye"></i> View Full Details
+                        </button>
+                        <button class="btn" style="background: #ef4444; color: white;" onclick="rejectPayment('1846')">
+                            <i class="fas fa-times"></i> Reject Payment
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Payment 3 -->
+                <div style="padding: 20px; background: linear-gradient(135deg, rgba(245,158,11,0.05) 0%, rgba(217,119,6,0.05) 100%); border-left: 4px solid #f59e0b; border-radius: 12px;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div style="flex: 1;">
+                            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                                <span class="badge" style="background: #fef3c7; color: #d97706;">REVIEW</span>
+                                <span class="badge badge-warning">Pending</span>
+                                <code style="font-size: 12px;">#CRYPTO-1845</code>
+                                <span style="font-size: 12px; color: var(--text-light);">4 hours old</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px;">
+                                <div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">User</div>
+                                    <strong>Alex Kim</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">alex@sales.com</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Amount</div>
+                                    <strong style="color: #26a17b;">100 USDT</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">≈ $100 USD</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Plan</div>
+                                    <strong>Starter Plan</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">$19.99/mo</div>
+                                </div>
+                            </div>
+                            <div style="padding: 12px; background: white; border-radius: 8px; margin-bottom: 12px;">
+                                <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Transaction Hash</div>
+                                <code style="font-size: 11px; word-break: break-all;">0x9e8f7d6c5b4a3e2d1c0b9a8f7e6d5c4b3a2e1d0c9b8a7f6e5d4c3b2a1e0d9c8b</code>
+                                <button class="btn-sm btn-secondary" style="margin-left: 8px;">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                                <a href="#" class="btn-sm btn-secondary" style="margin-left: 8px;" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> View on Blockchain
+                                </a>
+                            </div>
+                            <div style="padding: 12px; background: #fef3c7; border-radius: 8px;">
+                                <div style="display: flex; gap: 16px; font-size: 14px;">
+                                    <div>
+                                        <div style="font-size: 12px; color: #d97706; margin-bottom: 4px;">Confirmations</div>
+                                        <strong style="color: #b45309;">2 / 12 required</strong>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 12px; color: #d97706; margin-bottom: 4px;">Status</div>
+                                        <strong style="color: #f59e0b;">⏳ Waiting for Confirmations</strong>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 12px; color: #d97706; margin-bottom: 4px;">Received</div>
+                                        <strong style="color: #b45309;">4 hours ago</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 12px; padding: 10px; background: rgba(245,158,11,0.2); border-radius: 8px; font-size: 13px;">
+                                <i class="fas fa-info-circle" style="color: #d97706;"></i>
+                                <strong style="color: #92400e;"> Note:</strong> <span style="color: #b45309;">Waiting for more confirmations. Typically takes 1-2 hours for USDT.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="btn btn-secondary" onclick="viewPaymentDetails('1845')">
+                            <i class="fas fa-eye"></i> View Full Details
+                        </button>
+                        <button class="btn btn-secondary" onclick="refreshPaymentStatus('1845')">
+                            <i class="fas fa-sync"></i> Refresh Status
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recently Resolved -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-check-circle"></i> Recently Resolved</h3>
+                    <a href="#" class="view-all">View All →</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="tasks-table">
+                        <thead>
+                            <tr>
+                                <th>Payment ID</th>
+                                <th>User</th>
+                                <th>Amount</th>
+                                <th>Plan</th>
+                                <th>Resolution</th>
+                                <th>Resolved By</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #d1fae5;">
+                                <td><code>#CRYPTO-1844</code></td>
+                                <td>
+                                    <strong>Mike Johnson</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">mike@startup.io</div>
+                                </td>
+                                <td><strong style="color: #f7931a;">0.1 BTC</strong></td>
+                                <td>Enterprise</td>
+                                <td><span class="badge badge-success">Approved</span></td>
+                                <td>Admin User</td>
+                                <td>2 hours ago</td>
+                            </tr>
+                            <tr style="background: #d1fae5;">
+                                <td><code>#CRYPTO-1843</code></td>
+                                <td>
+                                    <strong>Emily Brown</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">emily@design.co</div>
+                                </td>
+                                <td><strong style="color: #627eea;">0.5 ETH</strong></td>
+                                <td>Pro Plan</td>
+                                <td><span class="badge badge-success">Approved</span></td>
+                                <td>Admin User</td>
+                                <td>5 hours ago</td>
+                            </tr>
+                            <tr style="background: #fee2e2;">
+                                <td><code>#CRYPTO-1842</code></td>
+                                <td>
+                                    <strong>James Wilson</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">james@test.com</div>
+                                </td>
+                                <td><strong style="color: #f7931a;">0.001 BTC</strong></td>
+                                <td>Starter</td>
+                                <td>
+                                    <span class="badge badge-danger">Rejected</span>
+                                    <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Insufficient amount</div>
+                                </td>
+                                <td>Admin User</td>
+                                <td>1 day ago</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Blockchain Monitor Settings -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-cog"></i> Blockchain Monitoring Settings</h3>
+                </div>
+                <div style="display: grid; gap: 16px;">
+                    <div class="form-group">
+                        <label><i class="fas fa-check-double"></i> Required Confirmations (Bitcoin)</label>
+                        <input type="number" class="form-input" value="3" min="1" max="6">
+                        <div style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Number of confirmations required before auto-approval</div>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-check-double"></i> Required Confirmations (Ethereum)</label>
+                        <input type="number" class="form-input" value="12" min="1" max="20">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Auto-Approval Delay (minutes)</label>
+                        <input type="number" class="form-input" value="30" min="0" max="1440">
+                        <div style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Wait time before auto-approving confirmed payments</div>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Enable automatic payment approval</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Send email notifications for new pending payments</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Settings
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Payment Details Modal -->
+    <div id="paymentModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;">
+        <div style="background: white; border-radius: 16px; padding: 30px; max-width: 800px; width: 90%; max-height: 90vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin: 0;"><i class="fab fa-bitcoin"></i> Crypto Payment Details</h2>
+                <button onclick="document.getElementById('paymentModal').style.display='none'" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-light);">×</button>
+            </div>
+
+            <!-- Payment Status Banner -->
+            <div style="padding: 20px; background: linear-gradient(135deg, rgba(239,68,68,0.1) 0%, rgba(220,38,38,0.1) 100%); border-left: 4px solid #ef4444; border-radius: 12px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                    <span class="badge badge-danger">URGENT</span>
+                    <span class="badge badge-warning">Pending Verification</span>
+                    <span style="font-size: 12px; color: var(--text-light);">3 days old</span>
+                </div>
+                <h3 style="margin: 0; color: #991b1b;">Payment awaiting admin approval</h3>
+            </div>
+
+            <!-- Payment Info Grid -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                <div>
+                    <label style="font-size: 12px; color: var(--text-light); display: block; margin-bottom: 4px;">Payment ID</label>
+                    <strong><code>#CRYPTO-1847</code></strong>
+                </div>
+                <div>
+                    <label style="font-size: 12px; color: var(--text-light); display: block; margin-bottom: 4px;">Status</label>
+                    <span class="badge badge-warning">Pending</span>
+                </div>
+                <div>
+                    <label style="font-size: 12px; color: var(--text-light); display: block; margin-bottom: 4px;">User</label>
+                    <strong>David Lee</strong>
+                    <div style="font-size: 12px; color: var(--text-light);">david@tech.com</div>
+                </div>
+                <div>
+                    <label style="font-size: 12px; color: var(--text-light); display: block; margin-bottom: 4px;">Plan</label>
+                    <strong>Pro Plan (Monthly)</strong>
+                    <div style="font-size: 12px; color: var(--text-light);">$49.99/mo</div>
+                </div>
+                <div style="grid-column: 1 / -1;">
+                    <label style="font-size: 12px; color: var(--text-light); display: block; margin-bottom: 4px;">Amount</label>
+                    <div style="font-size: 24px; font-weight: 700; color: #f7931a;">0.05 BTC</div>
+                    <div style="font-size: 14px; color: var(--text-light);">≈ $2,270 USD (at time of payment)</div>
+                </div>
+            </div>
+
+            <!-- Blockchain Details -->
+            <div style="padding: 16px; background: var(--bg-main); border-radius: 12px; margin-bottom: 20px;">
+                <h4 style="margin: 0 0 12px 0;"><i class="fas fa-cube"></i> Blockchain Information</h4>
+                <div style="display: grid; gap: 12px;">
+                    <div>
+                        <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Transaction Hash</div>
+                        <code style="font-size: 11px; word-break: break-all;">0x7a8f3e2b1c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f</code>
+                    </div>
+                    <div>
+                        <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Payment Wallet</div>
+                        <code style="font-size: 11px;">bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh7k8</code>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                        <div>
+                            <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Confirmations</div>
+                            <strong style="color: #10b981;">6 / 3 required</strong>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Block Height</div>
+                            <strong>827,493</strong>
+                        </div>
+                        <div>
+                            <div style="font-size: 12px; color: var(--text-light); margin-bottom: 4px;">Timestamp</div>
+                            <strong>3 days ago</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Actions -->
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <button class="btn btn-primary btn-block" onclick="approvePayment('1847')">
+                    <i class="fas fa-check"></i> Approve & Credit Account
+                </button>
+                <button class="btn btn-secondary btn-block" onclick="refreshPaymentStatus('1847')">
+                    <i class="fas fa-sync"></i> Refresh Status
+                </button>
+                <button class="btn" style="background: #ef4444; color: white; flex: 1;" onclick="rejectPayment('1847')">
+                    <i class="fas fa-times"></i> Reject Payment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            });
+        }
+
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        }
+
+        function viewPaymentDetails(id) {
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        function approvePayment(id) {
+            if (confirm('✅ APPROVE this payment?\n\nThis will:\n• Credit the user\'s account\n• Activate their subscription/credits\n• Send confirmation email\n\nAre you sure?')) {
+                alert('Payment #CRYPTO-' + id + ' approved!\n\nUser account has been credited and notified. (Demo)');
+                // In production, this would call API to approve and credit account
+            }
+        }
+
+        function rejectPayment(id) {
+            const reason = prompt('⚠️ REJECT this payment?\n\nPlease enter rejection reason:\n(This will be sent to the user)');
+            if (reason) {
+                alert('Payment #CRYPTO-' + id + ' rejected!\n\nReason: ' + reason + '\n\nUser has been notified. (Demo)');
+            }
+        }
+
+        function refreshPaymentStatus(id) {
+            alert('Refreshing payment status from blockchain... (Demo)\n\nIn production, this would query the blockchain for latest status.');
+        }
+    </script>
+</body>
+</html>
+

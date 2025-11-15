@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin User Profile - Leadbunker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">User Profile</h1>
+        <a href="../dashboard.html" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+        </a>
+    </header>
+
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Leadbunker</span>
+                </div>
+                <div class="sidebar-subtitle">Admin Control</div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-gauge-high"></i> Overview</a></li>
+                    <li class="active"><a href="users.html"><i class="fas fa-users-cog"></i> Users</a></li>
+                    <li><a href="credits.html"><i class="fas fa-gem"></i> Credits & Coupons</a></li>
+                    <li><a href="transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="scraping.html"><i class="fas fa-database"></i> Scraping & Validation</a></li>
+                    <li><a href="wallets.html"><i class="fas fa-wallet"></i> Wallets</a></li>
+                    <li><a href="support.html"><i class="fas fa-life-ring"></i> Support Desk</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="user-profile.html" class="active-link"><i class="fas fa-user-shield"></i> Admin Profile</a></li>
+                    <li><a href="../dashboard.html"><i class="fas fa-arrow-left"></i> Back to App</a></li>
+                    <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Sample User Profile</h1>
+                <div class="header-actions">
+                    <button class="icon-btn"><i class="fas fa-arrow-left"></i></button>
+                    <button class="icon-btn"><i class="fas fa-sliders-h"></i></button>
+                </div>
+            </header>
+
+            <section class="stats-cards admin-stats">
+                <div class="card">
+                    <div class="card-icon profile-credits-icon"><i class="fas fa-gem"></i></div>
+                    <div class="card-info">
+                        <span class="card-title">Credits Balance</span>
+                        <span class="card-value">3,200</span>
+                    </div>
+                    <div class="card-change positive">+1,200 last 24h</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon profile-usage-icon"><i class="fas fa-envelope-circle-check"></i></div>
+                    <div class="card-info">
+                        <span class="card-title">Validated Emails</span>
+                        <span class="card-value">48,120</span>
+                    </div>
+                    <div class="card-change positive">97.4% accuracy</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon profile-plan-icon"><i class="fas fa-medal"></i></div>
+                    <div class="card-info">
+                        <span class="card-title">Plan</span>
+                        <span class="card-value">Growth Annual</span>
+                    </div>
+                    <div class="card-change positive">Renewal in 54 days</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon profile-risk-icon"><i class="fas fa-shield-halved"></i></div>
+                    <div class="card-info">
+                        <span class="card-title">Risk Score</span>
+                        <span class="card-value">Low</span>
+                    </div>
+                    <div class="card-change positive">No flags</div>
+                </div>
+            </section>
+
+            <section class="admin-grid two-column">
+                <div class="grid-column">
+                    <section class="card">
+                        <div class="profile-header">
+                            <div class="profile-user">
+                                <img src="https://i.pravatar.cc/96?img=8" alt="User Avatar" class="profile-avatar">
+                                <div class="profile-details">
+                                    <h2>Sarah Nolan</h2>
+                                    <span class="profile-email">sarah@loopstudio.io</span>
+                                    <span class="profile-meta"><i class="fas fa-map-marker-alt"></i> Austin, TX • Joined Feb 2023</span>
+                                </div>
+                            </div>
+                            <div class="profile-actions">
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-user-ninja"></i> Login as user</button>
+                                <button class="btn btn-secondary btn-sm"><i class="fas fa-envelope"></i> Email user</button>
+                            </div>
+                        </div>
+                        <div class="profile-tags">
+                            <span class="badge badge-info">Team owner</span>
+                            <span class="badge badge-success">Verified</span>
+                            <span class="badge badge-warning">API access</span>
+                        </div>
+                        <div class="profile-toolbar">
+                            <button class="btn btn-secondary btn-sm"><i class="fas fa-unlock"></i> Reset password</button>
+                            <button class="btn btn-secondary btn-sm"><i class="fas fa-user-shield"></i> Manage roles</button>
+                            <button class="btn btn-danger btn-sm"><i class="fas fa-user-slash"></i> Suspend user</button>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-chart-pie"></i> Usage Summary</h2>
+                            <span class="card-subtitle">Snapshot of recent extraction activity</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="tasks-table">
+                                <thead>
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th>This month</th>
+                                        <th>Change</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Total extractions</td>
+                                        <td>284</td>
+                                        <td><span class="badge badge-success">+18%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email validations</td>
+                                        <td>3,940</td>
+                                        <td><span class="badge badge-success">+9%</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone enrichments</td>
+                                        <td>1,120</td>
+                                        <td><span class="badge badge-info">Stable</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Failed jobs</td>
+                                        <td>6</td>
+                                        <td><span class="badge badge-danger">-40%</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-history"></i> Activity Log</h2>
+                            <a class="view-all" href="users.html">View all</a>
+                        </div>
+                        <ul class="activity-list">
+                            <li>
+                                <div class="activity-marker success"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">Issued 1,200 credits</span>
+                                    <span class="activity-meta">Auto-refund for validator delay</span>
+                                </div>
+                                <span class="activity-time">Today • 09:18</span>
+                            </li>
+                            <li>
+                                <div class="activity-marker info"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">Started impersonation session</span>
+                                    <span class="activity-meta">Admin Allison debugged coupon flow</span>
+                                </div>
+                                <span class="activity-time">Yesterday • 16:02</span>
+                            </li>
+                            <li>
+                                <div class="activity-marker warning"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">High usage alert</span>
+                                    <span class="activity-meta">Queued for proactive outreach</span>
+                                </div>
+                                <span class="activity-time">Nov 12 • 10:47</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+
+                <div class="grid-column">
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-coins"></i> Credits & Billing</h2>
+                            <span class="card-subtitle">Manage balances, coupons, and invoices</span>
+                        </div>
+                        <div class="credit-summary-grid">
+                            <div class="credit-summary-item">
+                                <span class="summary-label">Current credits</span>
+                                <span class="summary-value">3,200</span>
+                                <span class="summary-meta"><i class="fas fa-calendar"></i> 4,800 used this month</span>
+                            </div>
+                            <div class="credit-summary-item">
+                                <span class="summary-label">Next invoice</span>
+                                <span class="summary-value">$890</span>
+                                <span class="summary-meta positive"><i class="fas fa-gem"></i> 400 credits promo applied</span>
+                            </div>
+                            <div class="credit-summary-item">
+                                <span class="summary-label">Coupon</span>
+                                <span class="summary-value">SPRING-50</span>
+                                <span class="summary-meta warning"><i class="fas fa-hourglass-half"></i> Expires in 12 days</span>
+                            </div>
+                        </div>
+                        <form class="admin-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Adjust credits</label>
+                                    <input type="number" class="form-input" placeholder="e.g. +500">
+                                </div>
+                                <div class="form-group">
+                                    <label>Reason</label>
+                                    <select class="form-select">
+                                        <option>Service recovery</option>
+                                        <option>Loyalty bonus</option>
+                                        <option>Compliance adjustment</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-secondary"><i class="fas fa-eye"></i> Preview</button>
+                                <button class="btn btn-primary"><i class="fas fa-check-circle"></i> Apply</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-wallet"></i> Wallet & Payments</h2>
+                            <span class="card-subtitle">On-chain status for this account</span>
+                        </div>
+                        <div class="wallet-grid">
+                            <div class="wallet-stat">
+                                <span class="wallet-label">Wallet address</span>
+                                <span class="wallet-value mono">0x4f...3a91</span>
+                                <span class="wallet-meta">USDC • Active</span>
+                            </div>
+                            <div class="wallet-stat">
+                                <span class="wallet-label">Escrow balance</span>
+                                <span class="wallet-value">$1,920</span>
+                                <span class="wallet-meta positive">All reconciled</span>
+                            </div>
+                            <div class="wallet-stat">
+                                <span class="wallet-label">Pending payouts</span>
+                                <span class="wallet-value">$320</span>
+                                <span class="wallet-meta">Scheduled in 2h</span>
+                            </div>
+                            <div class="wallet-stat">
+                                <span class="wallet-label">Contract version</span>
+                                <span class="wallet-value">v2.4.1</span>
+                                <span class="wallet-meta">Auto upgrade enabled</span>
+                            </div>
+                        </div>
+                        <div class="wallet-actions">
+                            <button class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Release escrow</button>
+                            <button class="btn btn-secondary btn-block"><i class="fas fa-lock"></i> Freeze wallet</button>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-life-ring"></i> Support History</h2>
+                            <a class="view-all" href="support.html">Open in desk</a>
+                        </div>
+                        <ul class="activity-list">
+                            <li>
+                                <div class="activity-marker info"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">INC-3028 • Crypto mismatch</span>
+                                    <span class="activity-meta">Escalated to payments • awaiting response</span>
+                                </div>
+                                <span class="activity-time">Open</span>
+                            </li>
+                            <li>
+                                <div class="activity-marker success"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">INC-2991 • Validator delay</span>
+                                    <span class="activity-meta">Resolved with auto-credit</span>
+                                </div>
+                                <span class="activity-time">Closed Oct 28</span>
+                            </li>
+                            <li>
+                                <div class="activity-marker warning"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">INC-2956 • Phone lookup</span>
+                                    <span class="activity-meta">Manual review requested</span>
+                                </div>
+                                <span class="activity-time">Pending</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
+

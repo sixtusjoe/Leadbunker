@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupon Management - Admin - Leadbunker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Coupons</h1>
+        <a href="#" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+        </a>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Admin Panel</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li class="active"><a href="coupons.html"><i class="fas fa-ticket-alt"></i> Coupons</a></li>
+                    <li><a href="support.html"><i class="fas fa-headset"></i> Support <span class="badge">12</span></a></li>
+                    <li><a href="scraping.html"><i class="fas fa-spider"></i> Scraping Jobs</a></li>
+                    <li><a href="email-validator.html"><i class="fas fa-envelope-open-text"></i> Email Validator</a></li>
+                    <li><a href="wallets.html"><i class="fas fa-wallet"></i> Payment Wallets</a></li>
+                    <li><a href="crypto-payments.html"><i class="fab fa-bitcoin"></i> Crypto Payments</a></li>
+                    <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="../dashboard.html"><i class="fas fa-arrow-left"></i> User Dashboard</a></li>
+                    <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="main-header">
+                <div>
+                    <h1>Coupon Management</h1>
+                    <p style="color: var(--text-light); margin: 0; font-size: 14px;">Create and manage discount coupons</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="document.getElementById('createCouponModal').style.display='flex'">
+                        <i class="fas fa-plus"></i> Create Coupon
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">143</div>
+                        <div class="stat-label">Active Coupons</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">2,847</div>
+                        <div class="stat-label">Total Redemptions</div>
+                        <div class="card-change positive"><i class="fas fa-arrow-up"></i> +18% this month</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">$8,432</div>
+                        <div class="stat-label">Total Discounts Given</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="card">
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <input type="text" class="form-input search-input" placeholder="Search coupons by code or description...">
+                        <select class="form-select">
+                            <option value="">All Types</option>
+                            <option value="percentage">Percentage</option>
+                            <option value="fixed">Fixed Amount</option>
+                            <option value="credits">Free Credits</option>
+                        </select>
+                        <select class="form-select">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="expired">Expired</option>
+                            <option value="disabled">Disabled</option>
+                        </select>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coupons Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px;">
+                <!-- Coupon Card 1 -->
+                <div class="card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div>
+                            <h3 style="margin: 0 0 8px 0; color: white;"><i class="fas fa-gift"></i> WELCOME50</h3>
+                            <p style="margin: 0; opacity: 0.9; font-size: 13px;">50% off first purchase</p>
+                        </div>
+                        <span class="badge" style="background: rgba(255,255,255,0.2); color: white; font-size: 10px;">Active</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Discount</div>
+                                <div style="font-size: 20px; font-weight: 700;">50%</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Used</div>
+                                <div style="font-size: 20px; font-weight: 700;">247 / 500</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Expires</div>
+                                <div style="font-size: 13px; font-weight: 600;">Feb 28, 2025</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Revenue Impact</div>
+                                <div style="font-size: 13px; font-weight: 600;">-$2,847</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-sm" style="flex: 1; background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);" onclick="editCoupon('WELCOME50')">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-sm" style="flex: 1; background: rgba(239,68,68,0.8); color: white;" onclick="disableCoupon('WELCOME50')">
+                            <i class="fas fa-ban"></i> Disable
+                        </button>
+                        <button class="btn btn-sm" style="background: rgba(239,68,68,0.9); color: white;" onclick="deleteCoupon('WELCOME50')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Coupon Card 2 -->
+                <div class="card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div>
+                            <h3 style="margin: 0 0 8px 0; color: white;"><i class="fas fa-star"></i> PREMIUM20</h3>
+                            <p style="margin: 0; opacity: 0.9; font-size: 13px;">$20 off Pro Plan</p>
+                        </div>
+                        <span class="badge" style="background: rgba(255,255,255,0.2); color: white; font-size: 10px;">Active</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Discount</div>
+                                <div style="font-size: 20px; font-weight: 700;">$20</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Used</div>
+                                <div style="font-size: 20px; font-weight: 700;">89 / 200</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Expires</div>
+                                <div style="font-size: 13px; font-weight: 600;">Mar 31, 2025</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Revenue Impact</div>
+                                <div style="font-size: 13px; font-weight: 600;">-$1,780</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-sm" style="flex: 1; background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);" onclick="editCoupon('PREMIUM20')">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-sm" style="flex: 1; background: rgba(239,68,68,0.8); color: white;" onclick="disableCoupon('PREMIUM20')">
+                            <i class="fas fa-ban"></i> Disable
+                        </button>
+                        <button class="btn btn-sm" style="background: rgba(239,68,68,0.9); color: white;" onclick="deleteCoupon('PREMIUM20')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Coupon Card 3 -->
+                <div class="card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div>
+                            <h3 style="margin: 0 0 8px 0; color: white;"><i class="fas fa-coins"></i> FREECREDITS100</h3>
+                            <p style="margin: 0; opacity: 0.9; font-size: 13px;">100 free credits</p>
+                        </div>
+                        <span class="badge" style="background: rgba(255,255,255,0.2); color: white; font-size: 10px;">Active</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Credits</div>
+                                <div style="font-size: 20px; font-weight: 700;">100</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Used</div>
+                                <div style="font-size: 20px; font-weight: 700;">524 / ∞</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Expires</div>
+                                <div style="font-size: 13px; font-weight: 600;">Never</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; opacity: 0.8; margin-bottom: 4px;">Type</div>
+                                <div style="font-size: 13px; font-weight: 600;">One-time use</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-sm" style="flex: 1; background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3);" onclick="editCoupon('FREECREDITS100')">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-sm" style="flex: 1; background: rgba(239,68,68,0.8); color: white;" onclick="disableCoupon('FREECREDITS100')">
+                            <i class="fas fa-ban"></i> Disable
+                        </button>
+                        <button class="btn btn-sm" style="background: rgba(239,68,68,0.9); color: white;" onclick="deleteCoupon('FREECREDITS100')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Expired Coupon -->
+                <div class="card" style="background: #e5e7eb; opacity: 0.7;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div>
+                            <h3 style="margin: 0 0 8px 0;"><i class="fas fa-calendar-times"></i> HOLIDAY2024</h3>
+                            <p style="margin: 0; font-size: 13px; color: var(--text-light);">30% off - Holiday Sale</p>
+                        </div>
+                        <span class="badge badge-danger">Expired</span>
+                    </div>
+                    <div style="background: white; padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px;">Discount</div>
+                                <div style="font-size: 20px; font-weight: 700; color: var(--text-dark);">30%</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px;">Used</div>
+                                <div style="font-size: 20px; font-weight: 700; color: var(--text-dark);">1,247 / 1,500</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px;">Expired</div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark);">Jan 1, 2025</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px;">Revenue Impact</div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark);">-$3,805</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-sm btn-secondary" style="flex: 1;" onclick="viewCouponDetails('HOLIDAY2024')">
+                            <i class="fas fa-eye"></i> View Details
+                        </button>
+                        <button class="btn btn-sm" style="background: #ef4444; color: white;" onclick="deleteCoupon('HOLIDAY2024')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Disabled Coupon -->
+                <div class="card" style="background: #fee2e2; opacity: 0.8;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px;">
+                        <div>
+                            <h3 style="margin: 0 0 8px 0;"><i class="fas fa-ban"></i> TEST50</h3>
+                            <p style="margin: 0; font-size: 13px; color: var(--text-light);">Test coupon - disabled</p>
+                        </div>
+                        <span class="badge badge-danger">Disabled</span>
+                    </div>
+                    <div style="background: white; padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px;">Discount</div>
+                                <div style="font-size: 20px; font-weight: 700; color: var(--text-dark);">50%</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px;">Used</div>
+                                <div style="font-size: 20px; font-weight: 700; color: var(--text-dark);">5 / 100</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px;">Status</div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark);">Manually disabled</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 11px; color: var(--text-light); margin-bottom: 4px;">Revenue Impact</div>
+                                <div style="font-size: 13px; font-weight: 600; color: var(--text-dark);">-$125</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <button class="btn btn-sm btn-primary" style="flex: 1;" onclick="enableCoupon('TEST50')">
+                            <i class="fas fa-check"></i> Enable
+                        </button>
+                        <button class="btn btn-sm" style="background: #ef4444; color: white;" onclick="deleteCoupon('TEST50')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Add New Coupon Card (Call to Action) -->
+                <div class="card" style="background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%); border: 2px dashed var(--primary-color); cursor: pointer;" onclick="document.getElementById('createCouponModal').style.display='flex'">
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 20px; text-align: center;">
+                        <i class="fas fa-plus-circle" style="font-size: 48px; color: var(--primary-color); margin-bottom: 16px; opacity: 0.6;"></i>
+                        <h3 style="margin: 0 0 8px 0; color: var(--primary-color);">Create New Coupon</h3>
+                        <p style="margin: 0; color: var(--text-light); font-size: 13px;">Click to add a new discount code</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Coupon Modal -->
+    <div id="createCouponModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 9999; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;">
+        <div style="background: white; border-radius: 16px; padding: 30px; max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h2 style="margin: 0;"><i class="fas fa-ticket-alt"></i> Create New Coupon</h2>
+                <button onclick="document.getElementById('createCouponModal').style.display='none'" style="background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-light);">×</button>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-tag"></i> Coupon Code</label>
+                <input type="text" class="form-input" placeholder="e.g., SAVE20" style="text-transform: uppercase;">
+                <div style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Must be unique, letters and numbers only</div>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-align-left"></i> Description</label>
+                <input type="text" class="form-input" placeholder="e.g., 20% off all plans">
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-sliders-h"></i> Discount Type</label>
+                <select class="form-select" id="discountType" onchange="updateDiscountFields()">
+                    <option value="percentage">Percentage Discount</option>
+                    <option value="fixed">Fixed Amount</option>
+                    <option value="credits">Free Credits</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group" id="discountValueField">
+                    <label><i class="fas fa-percent"></i> Discount Value</label>
+                    <input type="number" class="form-input" placeholder="20" min="1" max="100">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-hashtag"></i> Usage Limit</label>
+                    <input type="number" class="form-input" placeholder="100" min="1">
+                    <div style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Leave empty for unlimited</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fas fa-calendar-alt"></i> Expiration Date</label>
+                    <input type="date" class="form-input">
+                    <div style="font-size: 12px; color: var(--text-light); margin-top: 4px;">Leave empty for no expiration</div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-dollar-sign"></i> Minimum Purchase</label>
+                    <input type="number" class="form-input" placeholder="0" min="0">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" style="width: 18px; height: 18px;">
+                    <span>One-time use per user</span>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <input type="checkbox" checked style="width: 18px; height: 18px;">
+                    <span>Active (enabled immediately)</span>
+                </label>
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <button class="btn btn-primary btn-block">
+                    <i class="fas fa-check"></i> Create Coupon
+                </button>
+                <button class="btn btn-secondary btn-block" onclick="document.getElementById('createCouponModal').style.display='none'">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            });
+        }
+
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        }
+
+        function updateDiscountFields() {
+            const discountType = document.getElementById('discountType').value;
+            const label = document.querySelector('#discountValueField label');
+            const input = document.querySelector('#discountValueField input');
+            
+            if (discountType === 'percentage') {
+                label.innerHTML = '<i class="fas fa-percent"></i> Discount Value';
+                input.placeholder = '20';
+                input.max = '100';
+            } else if (discountType === 'fixed') {
+                label.innerHTML = '<i class="fas fa-dollar-sign"></i> Discount Amount';
+                input.placeholder = '10.00';
+                input.max = '';
+            } else if (discountType === 'credits') {
+                label.innerHTML = '<i class="fas fa-coins"></i> Free Credits';
+                input.placeholder = '100';
+                input.max = '';
+            }
+        }
+
+        function editCoupon(code) {
+            alert('Edit coupon: ' + code + ' (Demo)');
+            // In production, open modal with coupon data
+        }
+
+        function disableCoupon(code) {
+            if (confirm('Disable coupon ' + code + '?')) {
+                alert('Coupon disabled! (Demo)');
+            }
+        }
+
+        function enableCoupon(code) {
+            if (confirm('Enable coupon ' + code + '?')) {
+                alert('Coupon enabled! (Demo)');
+            }
+        }
+
+        function deleteCoupon(code) {
+            if (confirm('⚠️ Delete coupon ' + code + '? This action cannot be undone!')) {
+                alert('Coupon deleted! (Demo)');
+            }
+        }
+
+        function viewCouponDetails(code) {
+            alert('View details for: ' + code + ' (Demo)');
+        }
+    </script>
+</body>
+</html>
+

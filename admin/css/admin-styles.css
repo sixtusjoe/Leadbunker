@@ -1,0 +1,201 @@
+/* Admin-Specific Style Overrides */
+
+/* H3, Pipeline Name, Status Label - Smaller & Tighter */
+h3,
+.pipeline-name,
+.status-label {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+
+/* Card Headers H3 should still be readable */
+.card-header h3 {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+}
+
+/* Main Headers (H1, H2) keep readable */
+h1 {
+    font-size: 24px !important;
+    font-weight: 800 !important;
+}
+
+h2 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+}
+
+/* Wallet Value & Related Financial Values */
+.wallet-value,
+.balance-value,
+.credit-amount,
+.price .amount,
+.stat-number,
+.pack-price {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+/* Card Value - More Compact */
+.card-value,
+.stat-value,
+.metric-value {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+/* Keep important large numbers visible */
+.main-header h1 {
+    font-size: 22px !important;
+}
+
+/* Sidebar adjustments for consistency */
+.sidebar-nav a {
+    font-size: 13px !important;
+}
+
+.sidebar-footer a {
+    font-size: 13px !important;
+}
+
+/* Table headers */
+.tasks-table th {
+    font-size: 11px !important;
+}
+
+/* Buttons - slightly smaller for admin */
+.btn {
+    font-size: 13px !important;
+}
+
+.btn-sm {
+    font-size: 11px !important;
+}
+
+/* Badge consistency */
+.badge {
+    font-size: 10px !important;
+}
+
+/* Form labels */
+.form-group label {
+    font-size: 13px !important;
+}
+
+/* Modal headings */
+#addUserModal h2,
+#addCreditsModal h2,
+#userDetailsModal h2,
+#transactionModal h2,
+#createCouponModal h2,
+#ticketModal h2,
+#jobModal h2,
+#paymentModal h2,
+#walletModal h2 {
+    font-size: 18px !important;
+}
+
+/* Stat cards in admin */
+.stat-card .stat-value {
+    font-size: 20px !important;
+}
+
+.stat-card .stat-label {
+    font-size: 12px !important;
+}
+
+/* Credit card display */
+.credit-card .credit-amount {
+    font-size: 18px !important;
+}
+
+/* Pricing card amounts */
+.price-card .amount {
+    font-size: 32px !important;
+}
+
+/* Feature card titles */
+.feature-card h3,
+.feature-card h4 {
+    font-size: 14px !important;
+}
+
+/* Compliance and info cards */
+.compliance-card h3,
+.compliance-card h4,
+.ai-card h3 {
+    font-size: 14px !important;
+}
+
+/* Table content */
+.tasks-table td {
+    font-size: 12px !important;
+}
+
+.tasks-table td strong {
+    font-size: 12px !important;
+}
+
+/* Financial displays */
+.balance-amount .balance-value {
+    font-size: 32px !important;
+}
+
+/* Payment details */
+.payment-method-item strong {
+    font-size: 14px !important;
+}
+
+/* User profile in header */
+.user-name {
+    font-size: 13px !important;
+}
+
+.welcome-text {
+    font-size: 11px !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 20px !important;
+    }
+    
+    h2 {
+        font-size: 16px !important;
+    }
+    
+    h3,
+    .card-header h3 {
+        font-size: 13px !important;
+    }
+    
+    .card-value,
+    .stat-value {
+        font-size: 16px !important;
+    }
+    
+    .wallet-value {
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 18px !important;
+    }
+    
+    h2 {
+        font-size: 15px !important;
+    }
+    
+    .card-value,
+    .stat-value {
+        font-size: 14px !important;
+    }
+    
+    .wallet-value {
+        font-size: 16px !important;
+    }
+}
+

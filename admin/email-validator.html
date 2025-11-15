@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Validator - Admin - Leadbunker</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Email Validator</h1>
+        <a href="#" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff" alt="Admin" class="mobile-profile-img">
+        </a>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Admin Panel</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="users.html"><i class="fas fa-users"></i> Users</a></li>
+                    <li><a href="transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="coupons.html"><i class="fas fa-ticket-alt"></i> Coupons</a></li>
+                    <li><a href="support.html"><i class="fas fa-headset"></i> Support <span class="badge">12</span></a></li>
+                    <li><a href="scraping.html"><i class="fas fa-spider"></i> Scraping Jobs</a></li>
+                    <li class="active"><a href="email-validator.html"><i class="fas fa-envelope-open-text"></i> Email Validator</a></li>
+                    <li><a href="wallets.html"><i class="fas fa-wallet"></i> Payment Wallets</a></li>
+                    <li><a href="crypto-payments.html"><i class="fab fa-bitcoin"></i> Crypto Payments</a></li>
+                    <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="../dashboard.html"><i class="fas fa-arrow-left"></i> User Dashboard</a></li>
+                    <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <div class="main-header">
+                <div>
+                    <h1>Email Validator Management</h1>
+                    <p style="color: var(--text-light); margin: 0; font-size: 14px;">Monitor email validation services and resolve issues</p>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">12,847</div>
+                        <div class="stat-label">Validated Today</div>
+                        <div class="card-change positive"><i class="fas fa-arrow-up"></i> +15% vs yesterday</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">87.3%</div>
+                        <div class="stat-label">Average Valid Rate</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-value">23</div>
+                        <div class="stat-label">Failed Validations</div>
+                        <div class="card-change negative"><i class="fas fa-exclamation-circle"></i> Needs review</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Health -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-heartbeat"></i> Validation Service Health</h3>
+                </div>
+                <div style="display: grid; gap: 16px;">
+                    <!-- Primary Validator -->
+                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(5,150,105,0.1) 100%); border-left: 4px solid #10b981; border-radius: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-server" style="color: #10b981;"></i>
+                                Primary Validator (Zerobounce)
+                            </h4>
+                            <span class="badge badge-success">Online</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 14px;">
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">Status</div>
+                                <strong style="color: #10b981;">✓ Healthy</strong>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">Response Time</div>
+                                <strong>124ms</strong>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">Success Rate</div>
+                                <strong style="color: #10b981;">99.7%</strong>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">API Credits</div>
+                                <strong style="color: #667eea;">847,293</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secondary Validator -->
+                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%); border-left: 4px solid #667eea; border-radius: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-server" style="color: #667eea;"></i>
+                                Secondary Validator (Hunter.io)
+                            </h4>
+                            <span class="badge badge-success">Online</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 14px;">
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">Status</div>
+                                <strong style="color: #10b981;">✓ Healthy</strong>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">Response Time</div>
+                                <strong>287ms</strong>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">Success Rate</div>
+                                <strong style="color: #10b981;">98.4%</strong>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">API Credits</div>
+                                <strong style="color: #667eea;">234,582</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backup Validator -->
+                    <div style="padding: 20px; background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(217,119,6,0.1) 100%); border-left: 4px solid #f59e0b; border-radius: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                            <h4 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+                                <i class="fas fa-server" style="color: #f59e0b;"></i>
+                                Backup Validator (Custom API)
+                            </h4>
+                            <span class="badge badge-warning">Degraded</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; font-size: 14px;">
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">Status</div>
+                                <strong style="color: #f59e0b;">⚠ Slow</strong>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">Response Time</div>
+                                <strong style="color: #f59e0b;">2,847ms</strong>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">Success Rate</div>
+                                <strong style="color: #f59e0b;">94.1%</strong>
+                            </div>
+                            <div>
+                                <div style="color: var(--text-light); font-size: 12px; margin-bottom: 4px;">API Credits</div>
+                                <strong style="color: #667eea;">Unlimited</strong>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px; padding: 10px; background: rgba(245,158,11,0.2); border-radius: 8px; font-size: 13px;">
+                            <i class="fas fa-info-circle" style="color: #d97706;"></i>
+                            <strong style="color: #92400e;"> Note:</strong> <span style="color: #b45309;">High latency detected. Investigating server performance.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Failed Validations -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Failed Validations - Requires Attention (23)</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="tasks-table">
+                        <thead>
+                            <tr>
+                                <th>Validation ID</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Error</th>
+                                <th>Service</th>
+                                <th>Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: #fee2e2;">
+                                <td><code>#VAL-4728</code></td>
+                                <td>
+                                    <strong>John Doe</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">john@example.com</div>
+                                </td>
+                                <td><code>contact@weird-domain.xyz</code></td>
+                                <td>
+                                    <span class="badge badge-danger">API Timeout</span>
+                                    <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">Service unresponsive</div>
+                                </td>
+                                <td>Zerobounce</td>
+                                <td>5 mins ago</td>
+                                <td>
+                                    <div style="display: flex; gap: 6px;">
+                                        <button class="btn-sm" style="background: #10b981; color: white;" onclick="retryValidation('4728')">
+                                            <i class="fas fa-redo"></i>
+                                        </button>
+                                        <button class="btn-sm btn-secondary" onclick="refundCredits('4728')">
+                                            <i class="fas fa-coins"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="background: #fee2e2;">
+                                <td><code>#VAL-4727</code></td>
+                                <td>
+                                    <strong>Sarah Smith</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">sarah@company.com</div>
+                                </td>
+                                <td><code>test@invalid-mx.com</code></td>
+                                <td>
+                                    <span class="badge badge-danger">Rate Limit</span>
+                                    <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">API limit exceeded</div>
+                                </td>
+                                <td>Hunter.io</td>
+                                <td>12 mins ago</td>
+                                <td>
+                                    <div style="display: flex; gap: 6px;">
+                                        <button class="btn-sm" style="background: #10b981; color: white;" onclick="retryValidation('4727')">
+                                            <i class="fas fa-redo"></i>
+                                        </button>
+                                        <button class="btn-sm btn-secondary" onclick="refundCredits('4727')">
+                                            <i class="fas fa-coins"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="background: #fee2e2;">
+                                <td><code>#VAL-4726</code></td>
+                                <td>
+                                    <strong>Mike Johnson</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">mike@startup.io</div>
+                                </td>
+                                <td><code>admin@blocked-domain.net</code></td>
+                                <td>
+                                    <span class="badge badge-danger">Service Error</span>
+                                    <div style="font-size: 11px; color: var(--text-light); margin-top: 4px;">500 Internal Server Error</div>
+                                </td>
+                                <td>Custom API</td>
+                                <td>18 mins ago</td>
+                                <td>
+                                    <div style="display: flex; gap: 6px;">
+                                        <button class="btn-sm" style="background: #10b981; color: white;" onclick="retryValidation('4726')">
+                                            <i class="fas fa-redo"></i>
+                                        </button>
+                                        <button class="btn-sm btn-secondary" onclick="refundCredits('4726')">
+                                            <i class="fas fa-coins"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Validations -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-check"></i> Recent Validations</h3>
+                    <select class="form-select" style="width: auto;">
+                        <option>Last 24 Hours</option>
+                        <option>Last 7 Days</option>
+                        <option>Last 30 Days</option>
+                    </select>
+                </div>
+                <div class="table-responsive">
+                    <table class="tasks-table">
+                        <thead>
+                            <tr>
+                                <th>Validation ID</th>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Result</th>
+                                <th>Service</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>#VAL-4725</code></td>
+                                <td>
+                                    <strong>Emily Brown</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">emily@design.co</div>
+                                </td>
+                                <td><code>contact@company.com</code></td>
+                                <td><span class="badge badge-success">Valid</span></td>
+                                <td>Zerobounce</td>
+                                <td>2 mins ago</td>
+                            </tr>
+                            <tr>
+                                <td><code>#VAL-4724</code></td>
+                                <td>
+                                    <strong>David Lee</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">david@tech.com</div>
+                                </td>
+                                <td><code>test@example.com</code></td>
+                                <td><span class="badge badge-danger">Invalid</span></td>
+                                <td>Hunter.io</td>
+                                <td>5 mins ago</td>
+                            </tr>
+                            <tr>
+                                <td><code>#VAL-4723</code></td>
+                                <td>
+                                    <strong>Lisa Anderson</strong>
+                                    <div style="font-size: 11px; color: var(--text-light);">lisa@marketing.com</div>
+                                </td>
+                                <td><code>info@business.co</code></td>
+                                <td><span class="badge badge-warning">Risky</span></td>
+                                <td>Zerobounce</td>
+                                <td>8 mins ago</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Service Configuration -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-cog"></i> Service Configuration</h3>
+                </div>
+                <div style="display: grid; gap: 16px;">
+                    <div class="form-group">
+                        <label><i class="fas fa-server"></i> Primary Validator Service</label>
+                        <select class="form-select">
+                            <option selected>Zerobounce</option>
+                            <option>Hunter.io</option>
+                            <option>Custom API</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Validation Timeout (seconds)</label>
+                        <input type="number" class="form-input" value="30" min="5" max="120">
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Enable automatic retry on failure</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" checked style="width: 18px; height: 18px;">
+                            <span>Auto-refund credits on validation failure</span>
+                        </label>
+                    </div>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Configuration
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            });
+        }
+
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        }
+
+        function retryValidation(id) {
+            if (confirm('Retry validation #VAL-' + id + '?')) {
+                alert('Validation queued for retry! (Demo)');
+            }
+        }
+
+        function refundCredits(id) {
+            if (confirm('Refund credits for failed validation #VAL-' + id + '?')) {
+                alert('Credits refunded to user! (Demo)');
+            }
+        }
+    </script>
+</body>
+</html>
+

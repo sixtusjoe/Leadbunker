@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Credits & Coupons - Leadbunker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+
+<body>
+    <header class="mobile-header">
+        <button class="mobile-menu-btn" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="mobile-page-title">Credits & Coupons</h1>
+        <a href="../dashboard.html" class="mobile-profile-link">
+            <img src="https://ui-avatars.com/api/?name=Admin&background=667eea&color=fff&size=80" alt="Profile" class="mobile-profile-img">
+        </a>
+    </header>
+
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">LB</div>
+                    <span>Leadbunker</span>
+                </div>
+                <div class="sidebar-subtitle">Admin Control</div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-gauge-high"></i> Overview</a></li>
+                    <li><a href="users.html"><i class="fas fa-users-cog"></i> Users</a></li>
+                    <li class="active"><a href="credits.html"><i class="fas fa-gem"></i> Credits & Coupons</a></li>
+                    <li><a href="transactions.html"><i class="fas fa-credit-card"></i> Transactions</a></li>
+                    <li><a href="scraping.html"><i class="fas fa-database"></i> Scraping & Validation</a></li>
+                    <li><a href="wallets.html"><i class="fas fa-wallet"></i> Wallets</a></li>
+                    <li><a href="support.html"><i class="fas fa-life-ring"></i> Support Desk</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <ul>
+                    <li><a href="user-profile.html"><i class="fas fa-user-shield"></i> Admin Profile</a></li>
+                    <li><a href="../dashboard.html"><i class="fas fa-arrow-left"></i> Back to App</a></li>
+                    <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Credits & Coupon Management</h1>
+                <div class="header-actions">
+                    <button class="icon-btn"><i class="fas fa-plus"></i></button>
+                    <button class="icon-btn"><i class="fas fa-file-import"></i></button>
+                </div>
+            </header>
+
+            <section class="stats-cards admin-stats">
+                <div class="card">
+                    <div class="card-icon credits-icon"><i class="fas fa-gem"></i></div>
+                    <div class="card-info">
+                        <span class="card-title">Credits in Circulation</span>
+                        <span class="card-value">4,720,560</span>
+                    </div>
+                    <div class="card-change positive">+11.4% vs last month</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon coupon-icon"><i class="fas fa-ticket-alt"></i></div>
+                    <div class="card-info">
+                        <span class="card-title">Active Coupons</span>
+                        <span class="card-value">28</span>
+                    </div>
+                    <div class="card-change positive">5 launching this week</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon refund-icon"><i class="fas fa-rotate-left"></i></div>
+                    <div class="card-info">
+                        <span class="card-title">Refunded Credits</span>
+                        <span class="card-value">62,140</span>
+                    </div>
+                    <div class="card-change negative">3.1% escalation</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon bonus-icon"><i class="fas fa-gifts"></i></div>
+                    <div class="card-info">
+                        <span class="card-title">Promotional Pool</span>
+                        <span class="card-value">148,500</span>
+                    </div>
+                    <div class="card-change positive">Campaigns funded</div>
+                </div>
+            </section>
+
+            <section class="admin-grid two-column">
+                <div class="grid-column">
+                    <section class="card credit-balance-card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-gem"></i> Credit Ledger</h2>
+                            <div class="header-right">
+                                <button class="btn btn-secondary btn-sm"><i class="fas fa-sync"></i> Sync wallets</button>
+                                <button class="btn btn-primary btn-sm"><i class="fas fa-file-export"></i> Download ledger</button>
+                            </div>
+                        </div>
+                        <div class="balance-header">
+                            <div>
+                                <span class="card-subtitle">Credits in circulation</span>
+                                <div class="balance-value">4,720,560</div>
+                                <span class="balance-label">Across 12,487 users • avg 378 credits</span>
+                            </div>
+                            <div class="balance-amount">
+                                <span class="balance-label">Fiat equivalent</span>
+                                <div class="balance-value">$472,056</div>
+                                <span class="balance-label">Live oracle synced 2 mins ago</span>
+                            </div>
+                        </div>
+                        <div class="credit-summary-grid">
+                            <div class="credit-summary-item">
+                                <span class="summary-label">Reserved for disputes</span>
+                                <span class="summary-value">84,200</span>
+                                <span class="summary-meta negative"><i class="fas fa-arrow-down"></i> -1.2% WoW</span>
+                            </div>
+                            <div class="credit-summary-item">
+                                <span class="summary-label">Auto-allocated refunds</span>
+                                <span class="summary-value">26,400</span>
+                                <span class="summary-meta"><i class="fas fa-clock"></i> 91% within SLA</span>
+                            </div>
+                            <div class="credit-summary-item">
+                                <span class="summary-label">Promotional balance</span>
+                                <span class="summary-value">148,500</span>
+                                <span class="summary-meta positive"><i class="fas fa-bullhorn"></i> 6 active campaigns</span>
+                            </div>
+                            <div class="credit-summary-item">
+                                <span class="summary-label">Validator penalties</span>
+                                <span class="summary-value">12,400</span>
+                                <span class="summary-meta warning"><i class="fas fa-shield-alt"></i> Audit scheduled</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-list"></i> Credit Issuance History</h2>
+                            <a class="view-all" href="transactions.html">View journal</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="tasks-table">
+                                <thead>
+                                    <tr>
+                                        <th>Batch</th>
+                                        <th>Segment</th>
+                                        <th>Credits</th>
+                                        <th>Reason</th>
+                                        <th>Processed by</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#CR-8821</td>
+                                        <td><span class="badge badge-info">Crypto delays</span></td>
+                                        <td>12,000</td>
+                                        <td>Escrow release lag > 30m</td>
+                                        <td>Sasha (Payments)</td>
+                                        <td>Nov 14 • 09:20</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#CR-8818</td>
+                                        <td><span class="badge badge-success">Enterprise bonus</span></td>
+                                        <td>24,500</td>
+                                        <td>Q4 retention accelerator</td>
+                                        <td>Allison (Billing)</td>
+                                        <td>Nov 14 • 07:50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#CR-8811</td>
+                                        <td><span class="badge badge-warning">Validator rollback</span></td>
+                                        <td>6,300</td>
+                                        <td>API rate limit hit</td>
+                                        <td>Ben (Data Ops)</td>
+                                        <td>Nov 13 • 18:32</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#CR-8806</td>
+                                        <td><span class="badge badge-info">Goodwill</span></td>
+                                        <td>3,800</td>
+                                        <td>Support escalation INC-3022</td>
+                                        <td>Lina (Support)</td>
+                                        <td>Nov 13 • 14:05</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#CR-8803</td>
+                                        <td><span class="badge badge-success">Expansion offer</span></td>
+                                        <td>9,000</td>
+                                        <td>Upgrade to Growth annual</td>
+                                        <td>Marco (Compliance)</td>
+                                        <td>Nov 13 • 11:12</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-ticket"></i> Create Coupon</h2>
+                            <span class="card-subtitle">Generate stackable offers with usage controls</span>
+                        </div>
+                        <form class="admin-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Coupon code</label>
+                                    <input type="text" class="form-input" placeholder="e.g. CYBER-125">
+                                </div>
+                                <div class="form-group">
+                                    <label>Discount type</label>
+                                    <select class="form-select">
+                                        <option>Percentage off credits</option>
+                                        <option>Flat credits</option>
+                                        <option>Bonus credits after purchase</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Value</label>
+                                    <input type="number" class="form-input" placeholder="e.g. 25">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Minimum spend</label>
+                                    <input type="number" class="form-input" placeholder="e.g. 500 credits">
+                                </div>
+                                <div class="form-group">
+                                    <label>Redemption limit</label>
+                                    <input type="number" class="form-input" placeholder="e.g. 250 uses">
+                                </div>
+                                <div class="form-group">
+                                    <label>Expires on</label>
+                                    <input type="date" class="form-input">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Segments</label>
+                                    <select class="form-select">
+                                        <option>All paying users</option>
+                                        <option>Enterprise only</option>
+                                        <option>Trial converts</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Stacking rule</label>
+                                    <select class="form-select">
+                                        <option>Cannot be combined</option>
+                                        <option>Stack with promos</option>
+                                        <option>Stack with referral only</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Internal note</label>
+                                    <textarea class="form-input" rows="3" placeholder="Document the goal and success criteria"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button class="btn btn-secondary"><i class="fas fa-eye"></i> Preview rollout</button>
+                                <button class="btn btn-primary"><i class="fas fa-rocket"></i> Launch coupon</button>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <div class="grid-column">
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-tags"></i> Active Coupons</h2>
+                            <a class="view-all" href="#">Coupon library</a>
+                        </div>
+                        <ul class="coupon-list">
+                            <li>
+                                <div class="coupon-header">
+                                    <span class="coupon-code">SPRING-50</span>
+                                    <span class="badge badge-success">Live</span>
+                                </div>
+                                <p class="coupon-meta">50% bonus credits on top-ups • Growth and above</p>
+                                <div class="coupon-progress">
+                                    <div class="progress-bar success" style="width: 68%;"></div>
+                                </div>
+                                <div class="coupon-footer">
+                                    <span class="coupon-usage">342 / 500 used</span>
+                                    <button class="btn btn-secondary btn-sm"><i class="fas fa-pause"></i> Pause</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="coupon-header">
+                                    <span class="coupon-code">VALIDATOR-MAKEGOOD</span>
+                                    <span class="badge badge-warning">Targeted</span>
+                                </div>
+                                <p class="coupon-meta">Grants 600 credits after validator outage</p>
+                                <div class="coupon-progress">
+                                    <div class="progress-bar warning" style="width: 41%;"></div>
+                                </div>
+                                <div class="coupon-footer">
+                                    <span class="coupon-usage">41 / 100 issued</span>
+                                    <button class="btn btn-primary btn-sm"><i class="fas fa-bolt"></i> Trigger</button>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="coupon-header">
+                                    <span class="coupon-code">REFERRAL-BOOST</span>
+                                    <span class="badge badge-info">Auto</span>
+                                </div>
+                                <p class="coupon-meta">Adds 200 credits after successful referral</p>
+                                <div class="coupon-progress">
+                                    <div class="progress-bar info" style="width: 82%;"></div>
+                                </div>
+                                <div class="coupon-footer">
+                                    <span class="coupon-usage">820 / 1,000 rewarded</span>
+                                    <button class="btn btn-secondary btn-sm"><i class="fas fa-pen"></i> Edit</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-robot"></i> Automation & Safeguards</h2>
+                            <span class="card-subtitle">Guardrails for credit issuance and abuse prevention</span>
+                        </div>
+                        <ul class="automation-list">
+                            <li>
+                                <div class="automation-indicator success"></div>
+                                <div class="automation-content">
+                                    <span class="automation-title">Validator failure instant credit</span>
+                                    <span class="automation-meta">Adds 150 credits + alert when bounce > 8%</span>
+                                </div>
+                                <span class="badge badge-success">Enabled</span>
+                            </li>
+                            <li>
+                                <div class="automation-indicator warning"></div>
+                                <div class="automation-content">
+                                    <span class="automation-title">Coupon stacking guard</span>
+                                    <span class="automation-meta">Blocks usage if > 2 coupons applied</span>
+                                </div>
+                                <span class="badge badge-warning">Monitoring</span>
+                            </li>
+                            <li>
+                                <div class="automation-indicator info"></div>
+                                <div class="automation-content">
+                                    <span class="automation-title">Crypto reconciliation credit top-up</span>
+                                    <span class="automation-meta">Posts provisional credits after 10m delay</span>
+                                </div>
+                                <span class="badge badge-info">Active</span>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-header">
+                            <h2><i class="fas fa-rotate"></i> Recent Refund Activity</h2>
+                            <a class="view-all" href="transactions.html">Audit trail</a>
+                        </div>
+                        <ul class="activity-list">
+                            <li>
+                                <div class="activity-marker success"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">Refund processed</span>
+                                    <span class="activity-meta">Returned 600 credits to INV-44291</span>
+                                </div>
+                                <span class="activity-time">5 mins ago</span>
+                            </li>
+                            <li>
+                                <div class="activity-marker warning"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">Coupon abuse flag</span>
+                                    <span class="activity-meta">REFERRAL-BOOST used 4x by same org</span>
+                                </div>
+                                <span class="activity-time">18 mins ago</span>
+                            </li>
+                            <li>
+                                <div class="activity-marker info"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">Credit bonus scheduled</span>
+                                    <span class="activity-meta">Enterprise annual upgrade queued</span>
+                                </div>
+                                <span class="activity-time">42 mins ago</span>
+                            </li>
+                            <li>
+                                <div class="activity-marker danger"></div>
+                                <div class="activity-content">
+                                    <span class="activity-title">Manual refund blocked</span>
+                                    <span class="activity-meta">Exceeded daily limit for agent</span>
+                                </div>
+                                <span class="activity-time">1 hour ago</span>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
+
